@@ -1,0 +1,22 @@
+{
+  "name": "openbazaar.com",
+  "version": "0.0.1",
+  "description": "Browse OpenBazaar on the Web",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.2.0",
+    "navigo": "^4.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bitcoin",
+    "p2p",
+    "openbazaar",
+    "crypto"
+  ],
+  "author": "",
+  "license": "ISC"
+}

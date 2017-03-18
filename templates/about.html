@@ -1,0 +1,168 @@
+<html>
+  <head>
+    <title>{{userName}} on OpenBazaar</title>
+    <link rel="stylesheet" href="./styles/main.css">
+  </head>
+
+  <body>
+    <section id="contentFrame" class="clrBr">
+      <div id="pageContainer"><div class="userPage clrS"><nav id="pageTabBar" class="barLg clrP clrBr">
+
+      <div class="flexVCent pageTabs">
+        <!--consider turning tabs into a reusable view-->
+        <div>
+          <div class="userIcon disc clrBr2 clrSh1 js-avatar" style="background-image: url(http://localhost:4002/ipfs/Qmacj5LfTY278pgRoe5zcA58mAvSwtqUvrStYnQZhqM3b4), url('../imgs/defaultAvatar.png')"></div>
+        </div>
+        <div class="flexExpand">
+          <h1 class="h2 txUnb txUnl">{{userName}}</h1>
+          <div class="txt5b">
+            <a class="js-tab" data-tab="Reputation">
+              <span class="clrT">📍{{userLocation}}</span>
+            </a>
+          </div>
+        </div>
+        <div class="flexExpand">
+          <div class="flexHRight flexVCent gutterH clrT2">
+            <a class="btn tab clrBr js-tab clrT active" data-tab="home">Home</a>
+            <a class="btn tab clrBr js-tab" data-tab="store">Store<span class="clrTEmph1 margLSm js-listingsCount">{{storeCount}}</span></a>
+            <a class="btn tab clrBr js-tab" data-tab="following">Following<span class="clrTEmph1 margLSm js-followingCount">{{followingCount}}</span></a>
+            <a class="btn tab clrBr js-tab" data-tab="followers">Followers<span class="clrTEmph1 margLSm js-followerCount">{{followersCount}}</span></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="header js-header" style="background-image: url(http://localhost:4002/ipfs/QmTnEDQydgsnpmiKDdjqjrpWFvNcfc8kfuvNGqATvdka7z), url('../imgs/defaultHeader.png')">
+    </div>
+    <div class="pageContent js-pageContent">
+      <div class="pageControls flexVBase">
+        <div class="flexExpand">
+          <h1 class="txBg txUnb txUnl txGlow js-tabTitle">Home</h1>
+        </div>
+      </div>
+      <div class="tabContent js-tabContent">
+        <!-- insert the tab subview here -->
+      <div class="userPageHome"><div class="flexRow gutterH">
+      <div class="col4 gutterVMd">
+        <div class="userShort js-userShort">
+          <div class="contentBox clrBr clrP clrSh2 ">
+      <div class="shortHeader" style="background-image: url(http://localhost:4002/ipfs/QmRqTUHZVupUmxZiTYewGZ6hgSzJPrFp9kncbfRvWiQ5Hk), url('../imgs/defaultHeader.png')">
+        <a class="js-userName">
+          <div class="userIcon disc clrBr2 clrSh1" style="background-image: url(http://localhost:4002/ipfs/Qmacj5LfTY278pgRoe5zcA58mAvSwtqUvrStYnQZhqM3b4), url('../imgs/defaultAvatar.png')">
+          </div>
+        </a>
+        
+          <div class="userControls">
+            
+              
+    <a class="btnProcessing iconBtn clrP clrBr js-follow ">
+      <svg version="1.1" class="spinner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+      s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+      c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+      C22.32,8.481,24.301,9.057,26.013,10.047z" transform="rotate(300 20 20)">
+      <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animateTransform>
+      </path>
+    </svg>
+      <i class="ion-person-stalker"></i>
+    </a>          
+              
+            
+          </div>
+        
+      </div>
+      <div class="content">
+        
+          <div class="contentTop">
+            <div>
+              <a class="flex snipKids gutterH rowTn js-userName">
+                <div class="tx3 clrT name"><strong>🤖Skimia</strong></div>
+                <div class="clrT2">
+                  ErnestEvans
+                </div>
+              </a>
+            </div>
+            <p class="clamp2">
+              I am a robot.
+
+    porro et debitis dignissimos consectetur. temporibus ut ex ut.
+            </p>
+          </div>
+          <div class="flex gutterH">
+            <div class="col8">
+              <span class="clrT2 clamp">📍 Fairfax, Mali</span>
+            </div>
+            <div class="col4 tx6">
+              stars here (xx)
+            </div>
+          </div>
+        
+      </div>
+    </div>
+
+        </div>
+        
+        <div class="informationList listBox padMd2 clrBr clrP clrSh2">
+          <div class="informationHeader">
+            <strong>Information</strong>
+          </div>
+          <div class="listItem">
+            <div class="flex">
+              <span class="flexExpand">GUID</span>
+              <span class="clrT hide js-guidCopied">Copied to Clipboard</span>
+            </div>
+            <div class="clrT2">
+              <a class="js-guid clrT2" data-guid="QmPUTcwFdCdd4CntWAVcS8Kvg5xvD4X7cfbK8CVYC57JuU">QmPUTcwFdCdd4CntWAVcS8Kvg5xvD4X7cfbK8CVYC57JuU</a>
+            </div>
+          </div>
+          
+          
+            <div class="listItem">
+              <div>Email</div>
+              <div class="clrT2">LindaSanchez@Reallinks.gov</div>
+            </div>
+          
+          
+        </div>
+      </div>
+      <div class="col8">
+        <div class="box">
+          <div class="contentBox padMd clrBr clrP clrSh2">
+            <div class="informationHeader row">
+              <strong>About</strong>
+            </div>
+            
+              blanditiis molestiae tempora nobis est. enim quaerat aliquid maxime voluptatibus blanditiis labore maxime itaque fuga quod. numquam vitae labore praesentium. fuga amet adipisci rem iure qui quas culpa alias. est non velit aperiam iusto error quia. et dicta ab minus qui dolorem. vel deserunt excepturi voluptatem reprehenderit dolorum! soluta iusto in consequatur odit. veritatis in quia exercitationem culpa vitae est. necessitatibus rerum voluptatum pariatur aut harum ipsa. omnis aspernatur molestiae deleniti nisi at et.  est laudantium provident minima. velit soluta consequatur veritatis aperiam provident. nemo et velit aut tempora. sunt suscipit quia quia dolore illo! expedita amet praesentium placeat occaecati dolor vel doloribus. cumque dolorum quidem perferendis sapiente nihil. perspiciatis explicabo ut. molestias eos cum earum ut et rem. sit cumque blanditiis facere dolorem nostrum. laboriosam sit et qui ad est sint. vero occaecati vel quis dignissimos. quaerat enim aut saepe consequuntur qui!  qui quia impedit saepe odio at earum ut atque cumque quo saepe! excepturi ex asperiores officiis rerum!
+             
+          </div>
+          <div class="contentBox padMd2 clrBr clrP clrSh2 termsDisplay js-termsDisplay">
+            <a class="cornerTR ion-close-round js-termsClose"></a>
+            <p>Terms and Service Go Here TODO: add data to template</p>
+            <div class="flexHRight">
+              <a class="btnTxt js-termsClose"><span class="txUnb">Cancel</span></a>
+              <a class="btn clrP clrBr js-addModerator">
+                <span class="js-addModeratorLbl ">
+                  Add as Moderator
+                </span>
+                <span class="js-removeModeratorLbl hide">
+                  Remove as Moderator
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div></div>
+    </div>
+    </div></div>
+    </section>
+
+  </body>
+
+  <script>
+    $.getJSON( "https://gateway.ob1.io/ipns/Qmda3TKT8YZ51PRRuX25mudxPhH5JG86db3Yu2oQzCvqQo/profile", function( data ) {
+      console.log(data);
+    });
+  </script>
+</html>

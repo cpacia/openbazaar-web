@@ -1,0 +1,3233 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'noto_sans';
+  src: url("../fonts/NotoSans-Regular-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'noto_sans';
+  src: url("../fonts/NotoSans-Bold-webfont.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'noto_sans';
+  src: url("../fonts/NotoSans-Italic-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'noto_sans';
+  src: url("../fonts/NotoSans-BoldItalic-webfont.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic; }
+
+html {
+  color: #262626;
+  font-family: "noto_sans";
+  font-size: 10px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0;
+  line-height: 1.2; }
+
+body {
+  overflow: hidden;
+  margin: 0; }
+  body.chatHover .modal::-webkit-scrollbar-track,
+  body.chatHover #contentFrame::-webkit-scrollbar-track {
+    background: transparent; }
+  body.chatHover .modal::-webkit-scrollbar-thumb,
+  body.chatHover #contentFrame::-webkit-scrollbar-thumb {
+    background: transparent; }
+    body.chatHover .modal::-webkit-scrollbar-thumb:hover,
+    body.chatHover #contentFrame::-webkit-scrollbar-thumb:hover {
+      background: transparent; }
+    body.chatHover .modal::-webkit-scrollbar-thumb:active,
+    body.chatHover #contentFrame::-webkit-scrollbar-thumb:active {
+      background: transparent; }
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  transition: color 0.15s cubic-bezier(0, 0, 0.2, 1);
+  color: inherit; }
+  a:hover, a:focus {
+    text-decoration: underline; }
+  a.link {
+    text-decoration: underline; }
+
+hr {
+  border: none;
+  border-bottom: 1px solid;
+  -webkit-margin-before: 0.5em;
+  -webkit-margin-after: 0.5em; }
+  hr.unleaded {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0; }
+  hr.dashed {
+    border-bottom: 1px dashed; }
+
+ul {
+  margin: 0; }
+
+ul.unstyled, ol.unstyled {
+  padding: 0; }
+  ul.unstyled li, ol.unstyled li {
+    list-style-type: none; }
+
+.bkgContain {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: 0; }
+
+.bkgCover {
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+#appFrame {
+  position: absolute;
+  height: 100%;
+  width: 100%; }
+  #appFrame #pageNavContainer {
+    position: relative;
+    z-index: 4; }
+  #appFrame #contentFrame {
+    position: relative;
+    overflow-y: scroll;
+    height: calc(100% - 50px);
+    box-sizing: border-box;
+    z-index: 0; }
+    #appFrame #contentFrame #pageContainer {
+      padding-top: 55px; }
+      #appFrame #contentFrame #pageContainer #pageTabBar {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 55px;
+        padding: 0;
+        overflow: hidden;
+        border-bottom-width: 1px;
+        border-bottom-style: solid; }
+        #appFrame #contentFrame #pageContainer #pageTabBar .pageTabs {
+          width: 990px;
+          margin: 0 calc((100% - 990px) / 2) 0 auto;
+          transition: margin 0.5s ease;
+          position: relative; }
+          .chatOpen #appFrame #contentFrame #pageContainer #pageTabBar .pageTabs {
+            margin-right: 225px; }
+          #appFrame #contentFrame #pageContainer #pageTabBar .pageTabs .userIcon {
+            border-width: 2px;
+            border-style: solid;
+            width: 44px;
+            height: 44px;
+            margin-right: 10px; }
+          #appFrame #contentFrame #pageContainer #pageTabBar .pageTabs .tab {
+            border-radius: 0;
+            box-sizing: content-box;
+            font-size: 1.5rem; }
+            #appFrame #contentFrame #pageContainer #pageTabBar .pageTabs .tab.active {
+              border-bottom-width: 1px;
+              border-bottom-style: solid; }
+      #appFrame #contentFrame #pageContainer .pageContent {
+        width: 990px;
+        box-sizing: border-box;
+        margin: 0 calc((100% - 990px) / 2) 0 auto;
+        padding: 0 20px 50px 20px;
+        position: relative;
+        transition: margin 0.5s ease; }
+        @media (max-width: 1440px) {
+          .chatOpen #appFrame #contentFrame #pageContainer .pageContent {
+            margin-right: 225px; } }
+  #appFrame #chatContainer {
+    position: fixed;
+    top: 104px;
+    right: 10px;
+    width: 48px;
+    height: calc(100% - 105px);
+    box-sizing: border-box;
+    z-index: 2;
+    transition: width 0.5s ease, background-color 0.5s ease, border-color 0.5s ease, height 0.5s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: transparent;
+    border-color: transparent;
+    border-width: 1px;
+    border-style: solid; }
+    #appFrame #chatContainer::-webkit-scrollbar {
+      width: 0; }
+    #appFrame #chatContainer:hover::-webkit-scrollbar {
+      width: 10px; }
+    .chatOpen #appFrame #chatContainer {
+      width: 225px; }
+    .chatConvoOpen #appFrame #chatContainer {
+      height: calc(100% - 463px); }
+  #appFrame #chatConvoContainer {
+    position: fixed;
+    right: 10px;
+    bottom: 0;
+    z-index: 2;
+    width: 225px;
+    height: 360px;
+    transform: translateY(105%);
+    transition: transform 300ms ease; }
+    .chatConvoOpen #appFrame #chatConvoContainer {
+      transform: translateY(0); }
+
+#ov1.minEffects,
+#ov1.minEffects *,
+#ov1.minEffects #overlay,
+#ov1.minEffects #pageNav,
+#ov1.minEffects #statusBar {
+  transition: none !important;
+  -webkit-filter: none !important;
+  opacity: 1 !important;
+  transition-property: none !important;
+  animation: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important; }
+
+#ov1 .hide {
+  display: none; }
+
+#ov1 .invisible {
+  visibility: hidden; }
+
+#ov1 .visuallyHidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+  /* 1 */ }
+
+#ov1 .disabled {
+  pointer-events: none;
+  opacity: 0.4; }
+
+.overflowAuto {
+  overflow: auto; }
+
+.floL {
+  float: left; }
+
+.floR {
+  float: right; }
+
+.preWrap {
+  white-space: pre-wrap; }
+
+#milestone {
+  display: none; }
+  .pre-release #milestone {
+    display: block;
+    position: fixed;
+    bottom: -8px;
+    padding: 2px 132px 30px 8px;
+    font-size: 14px;
+    right: 14px;
+    border-radius: 8px;
+    border-width: 2px;
+    border-style: solid;
+    z-index: 1;
+    transition: right 0.5s ease; }
+    .pre-release #milestone .milestone-inner {
+      position: relative;
+      top: 10px;
+      left: 110px; }
+
+#doorbell-button {
+  display: none; }
+  .pre-release #doorbell-button {
+    display: block;
+    right: 304px;
+    transition: right 0.5s ease; }
+
+.cf:before,
+.cf:after {
+  content: "";
+  display: table; }
+
+.cf:after {
+  clear: both; }
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin: 0;
+  font-weight: 700;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0.5em;
+  -webkit-user-select: none; }
+
+h1, .h1, .tx1, .btn.tx1, .tx1.btnRadio, .tx1.btnTxt, .tx1.iconBtn, .tx1.iconBtnSm, .tx1.btnHg {
+  font-size: 2.6rem; }
+
+h2, .h2, .tx2, .btn.tx2, .tx2.btnRadio, .tx2.btnTxt, .tx2.iconBtn, .tx2.iconBtnSm, .tx2.btnHg {
+  font-size: 2.3rem; }
+
+.tx2b, .btn.tx2b, .tx2b.btnRadio, .tx2b.btnTxt, .tx2b.iconBtn, .tx2b.iconBtnSm, .tx2b.btnHg {
+  font-size: 2rem; }
+
+h3, .h3, .tx3, .btn.tx3, .tx3.btnRadio, .tx3.btnTxt, .tx3.iconBtn, .tx3.iconBtnSm, .tx3.btnHg {
+  font-size: 1.7rem; }
+
+h4, .h4, .tx4, .btn.tx4, .tx4.btnRadio, .tx4.btnTxt, .tx4.iconBtn, .tx4.iconBtnSm, .tx4.btnHg {
+  font-size: 1.5rem; }
+
+h5, .h5, .tx5, .btn.tx5, .tx5.btnRadio, .tx5.btnTxt, .tx5.iconBtn, .tx5.iconBtnSm, .tx5.btnHg {
+  font-size: 1.4rem; }
+
+.tx5b, .btn.tx5b, .tx5b.btnRadio, .tx5b.btnTxt, .tx5b.iconBtn, .tx5b.iconBtnSm, .tx5b.btnHg {
+  font-size: 1.3rem; }
+
+h6, .h6, .tx6, .btn.tx6, .tx6.btnRadio, .tx6.btnTxt, .tx6.iconBtn, .tx6.iconBtnSm, .tx6.btnHg {
+  font-size: 1.2rem; }
+
+.txBg {
+  font-size: 4.75rem; }
+
+.txTn {
+  font-size: 0.9rem; }
+
+.txSm {
+  font-size: 1.1rem; }
+
+.txBase {
+  font-size: 1rem; }
+
+.txGlow {
+  text-shadow: #525252 0 1px 1px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fff; }
+
+p {
+  margin: 0;
+  line-height: 1.5;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 1em; }
+  p a {
+    text-decoration: underline; }
+
+* p:last-child {
+  -webkit-margin-after: 0; }
+
+.note {
+  font-size: 0.9rem; }
+
+.txUnl {
+  margin-bottom: 0; }
+
+.txCtr {
+  text-align: center; }
+
+.txRgt {
+  text-align: right; }
+
+#ov1 .txUnb {
+  font-weight: 400; }
+
+#ov1 .txB {
+  font-weight: bold; }
+
+#ov1 .tx500 {
+  font-weight: 500; }
+
+.txUp {
+  text-transform: uppercase; }
+
+.txU {
+  text-decoration: underline; }
+
+.txNoUnd:hover,
+a.txNoUnd:hover,
+a .txNoUnd:hover {
+  text-decoration: none; }
+
+.ic90r:before {
+  transform: rotate(90deg); }
+
+.noOverflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }
+
+.clamp, .clamp2, .clamp3, .clamp4 {
+  /* adds an ellipses to the end of wrapped text after 1 line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical; }
+
+.clamp2 {
+  /* adds an ellipses to the end of wrapped text after 2 lines */
+  -webkit-line-clamp: 2; }
+
+.clamp3 {
+  /* adds an ellipses to the end of wrapped text after 3 lines */
+  -webkit-line-clamp: 3; }
+
+.clamp4 {
+  /* adds an ellipses to the end of wrapped text after 4 lines */
+  -webkit-line-clamp: 4; }
+
+.columns {
+  column-count: 2;
+  column-gap: 15px;
+  max-height: fit-content; }
+
+.box, .boxList > *, .listBox > *, .scrollBox, .bar, .barSm, .barLg, .disc, .discSm, .contentBox, .listBox, .phraseBox, .toolTip:before {
+  display: block;
+  box-sizing: border-box;
+  position: relative; }
+
+.scrollBox {
+  overflow-x: hidden;
+  overflow-y: scroll; }
+
+.bar, .barSm, .barLg {
+  height: 50px;
+  padding: 0 10px; }
+  .bar input[type="text"], .barSm input[type="text"], .barLg input[type="text"] {
+    height: 100%; }
+
+.barSm {
+  height: 40px; }
+
+.barLg {
+  height: 55px; }
+
+.disc, .discSm {
+  box-sizing: border-box;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  background-position: center;
+  background-size: cover; }
+
+.discSm {
+  width: 38px;
+  height: 38px; }
+
+.border {
+  border-width: 1px;
+  border-style: solid; }
+
+.borderBottom, .borderStacked > * {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: inherit; }
+
+.borderTop {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: inherit; }
+
+.borderStacked > *:last-child {
+  border-bottom: none; }
+
+.contentBox, .listBox {
+  border-radius: 2px;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 1.5rem; }
+
+.phraseBox {
+  padding: 3px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 1px; }
+
+.listBox .listGroup {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-style: solid;
+  margin-bottom: 5px; }
+  .listBox .listGroup:last-child {
+    margin-bottom: 0;
+    border-bottom-width: 0; }
+  .listBox .listGroup .listItem {
+    padding: 9px 5px; }
+
+.listBox .listItem {
+  padding: 9px 0;
+  font-size: 1.4rem;
+  width: 100%;
+  box-sizing: border-box; }
+  .listBox .listItem:last-child {
+    margin-bottom: 0; }
+
+.arrowBox, .arrowBoxTop {
+  position: relative;
+  border-radius: 2px; }
+  .arrowBox::before, .arrowBoxTop::before {
+    content: '';
+    position: absolute;
+    background-color: inherit;
+    width: 25px;
+    height: 25px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: inherit; }
+
+.arrowBoxTop::before {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-135deg);
+  -webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%); }
+
+.toolTip {
+  position: relative;
+  cursor: pointer; }
+  .toolTip:before {
+    content: attr(data-tip);
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    line-height: 1.4;
+    font-weight: 400;
+    white-space: normal;
+    width: 255px;
+    box-sizing: border-box;
+    padding: 25px;
+    top: 100%;
+    margin-top: 8px; }
+  .toolTip:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    bottom: -30px;
+    transform: translate(-50%, -50%) rotate(-135deg);
+    -webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%); }
+  .toolTip:before, .toolTip:after {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    transition: opacity 0.5s;
+    z-index: 1;
+    border-width: 1px;
+    border-style: solid; }
+  .toolTip:hover:before, .toolTip.openTooltip:before, .toolTip:hover:after, .toolTip.openToolTip:after {
+    opacity: 1;
+    pointer-events: auto; }
+
+.flex, .flexRow, .flexCol, .flexColRows, .flexCent, .flexVCent, .flexVBot, .flexVBase, .flexHCent, .flexHRight {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: row; }
+  .flex > *, .flexRow > *, .flexCol > *, .flexColRows > *, .flexCent > *, .flexVCent > *, .flexVBot > *, .flexVBase > *, .flexHCent > *, .flexHRight > * {
+    flex: 0 1 auto; }
+  .flex.reverse, .reverse.flexRow, .reverse.flexCol, .reverse.flexColRows, .reverse.flexCent, .reverse.flexVCent, .reverse.flexVBot, .reverse.flexVBase, .reverse.flexHCent, .reverse.flexHRight {
+    flex-direction: row-reverse; }
+  .flex.flexFlushSides > *:first-child, .flexFlushSides.flexRow > *:first-child, .flexFlushSides.flexCol > *:first-child, .flexFlushSides.flexColRows > *:first-child, .flexFlushSides.flexCent > *:first-child, .flexFlushSides.flexVCent > *:first-child, .flexFlushSides.flexVBot > *:first-child, .flexFlushSides.flexVBase > *:first-child, .flexFlushSides.flexHCent > *:first-child, .flexFlushSides.flexHRight > *:first-child {
+    padding-left: 0;
+    margin-left: 0; }
+  .flex.flexFlushSides > *:last-child, .flexFlushSides.flexRow > *:last-child, .flexFlushSides.flexCol > *:last-child, .flexFlushSides.flexColRows > *:last-child, .flexFlushSides.flexCent > *:last-child, .flexFlushSides.flexVCent > *:last-child, .flexFlushSides.flexVBot > *:last-child, .flexFlushSides.flexVBase > *:last-child, .flexFlushSides.flexHCent > *:last-child, .flexFlushSides.flexHRight > *:last-child {
+    padding-right: 0;
+    margin-right: 0; }
+
+.flexRow {
+  align-items: stretch; }
+
+.snip,
+.snipKids > * {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.rowDivV {
+  width: 1px;
+  height: 100%; }
+
+.rowDivH {
+  height: 1px;
+  width: 100%; }
+
+.flexCol, .flexColRows {
+  flex-direction: column; }
+  .flexCol.reverse, .reverse.flexColRows {
+    flex-direction: column-reverse; }
+  .flexCol.flexFlushSides > *:first-child, .flexFlushSides.flexColRows > *:first-child {
+    padding-top: 0;
+    margin-top: 0; }
+  .flexCol.flexFlushSides > *:last-child, .flexFlushSides.flexColRows > *:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0; }
+
+.simpleFlexCol {
+  display: flex;
+  flex-direction: column; }
+
+.flexColRows {
+  justify-content: space-between;
+  height: 100%; }
+  .flexColRows > * {
+    width: 100%; }
+
+.flexCent {
+  height: 100%;
+  align-items: center;
+  justify-content: center; }
+
+.flexVCent {
+  height: 100%;
+  align-items: center; }
+
+.flexVBot {
+  height: 100%;
+  align-items: flex-end; }
+
+.flexVBase {
+  height: 100%;
+  align-items: baseline; }
+
+.flexHCent {
+  justify-content: center;
+  text-align: center; }
+
+.flexHRight {
+  justify-content: flex-end;
+  text-align: right; }
+
+.flexExpand,
+.flexKidsExpand > * {
+  flex-grow: 1; }
+
+.flexNoShrink {
+  flex-shrink: 0; }
+
+.flexItemCenter {
+  align-self: center; }
+
+.col, .col12, .col11, .col10, .col9, .col8, .col7, .col6, .col5, .col4, .col3, .col2, .col1 {
+  box-sizing: border-box;
+  position: relative;
+  flex: 0 0 auto; }
+
+.col12 {
+  flex-basis: 100%;
+  width: 100%; }
+
+.col11 {
+  flex-basis: 91.66666666666666%;
+  width: 91.66666666666666%; }
+
+.col10 {
+  flex-basis: 83.33333333333334%;
+  width: 83.33333333333334%; }
+
+.col9 {
+  flex-basis: 75%;
+  width: 75%; }
+
+.col8 {
+  flex-basis: 66.66666666666666%;
+  width: 66.66666666666666%; }
+
+.col7 {
+  flex-basis: 58.333333333333336%;
+  width: 58.333333333333336%; }
+
+.col6 {
+  flex-basis: 50%;
+  width: 50%; }
+
+.col5 {
+  flex-basis: 41.66666666666667%;
+  width: 41.66666666666667%; }
+
+.col4 {
+  flex-basis: 33.33333333333333%;
+  width: 33.33333333333333%; }
+
+.col3 {
+  flex-basis: 25%;
+  width: 25%; }
+
+.col2 {
+  flex-basis: 16.666666666666664%;
+  width: 16.666666666666664%; }
+
+.col1 {
+  flex-basis: 8.333333333333332%;
+  width: 8.333333333333332%; }
+
+.padTn,
+.padTnKids > * {
+  padding: 2.5px; }
+
+.padSm,
+.padSmKids > * {
+  padding: 5px; }
+
+.pad,
+.padKids > * {
+  padding: 10px; }
+
+.padMd,
+.padMdKids > * {
+  padding: 15px; }
+
+.padMd2,
+.padMd2Kids > * {
+  padding: 12px; }
+
+.padLg,
+.padLgKids > * {
+  padding: 20px; }
+
+.padGi,
+.padGiKids > * {
+  padding: 40px; }
+
+.padStack > *:not(:last-child) {
+  padding-bottom: 0; }
+
+#ov1 .padTop0 {
+  padding-top: 0; }
+
+.rowTn {
+  margin-bottom: 2.5px; }
+
+.rowSm {
+  margin-bottom: 5px; }
+
+.row {
+  margin-bottom: 10px; }
+
+.rowMd {
+  margin-bottom: 15px; }
+
+.rowLg {
+  margin-bottom: 20px; }
+
+.margRSm {
+  margin-right: 5px; }
+
+.margR {
+  margin-right: 10px; }
+
+.margLSm {
+  margin-left: 5px; }
+
+.margL {
+  margin-left: 10px; }
+
+#ov1 .marginTopAuto {
+  margin-top: auto; }
+  #ov1 .marginTopAuto + .select2-container {
+    margin-top: auto; }
+
+#ov1 .marginLAuto {
+  margin-left: auto; }
+  #ov1 .marginLAuto + .select2-container {
+    margin-left: auto; }
+
+.gutterHFlush:first-child, .gutterHTn > :first-child, .gutterHSm > :first-child, .gutterH > :first-child, .gutterHLg > :first-child {
+  margin-left: 0; }
+
+.gutterHFlush:last-child, .gutterHTn > :last-child, .gutterHSm > :last-child, .gutterH > :last-child, .gutterHLg > :last-child {
+  margin-right: 0; }
+
+.gutterHTn > * {
+  margin-right: 2.5px; }
+  .gutterHTn > *.col, .gutterHTn > *.col12, .gutterHTn > *.col11, .gutterHTn > *.col10, .gutterHTn > *.col9, .gutterHTn > *.col8, .gutterHTn > *.col7, .gutterHTn > *.col6, .gutterHTn > *.col5, .gutterHTn > *.col4, .gutterHTn > *.col3, .gutterHTn > *.col2, .gutterHTn > *.col1, .gutterHTn > *.col12, .gutterHTn > *.col11, .gutterHTn > *.col10, .gutterHTn > *.col9, .gutterHTn > *.col8, .gutterHTn > *.col7, .gutterHTn > *.col6, .gutterHTn > *.col5, .gutterHTn > *.col4, .gutterHTn > *.col3, .gutterHTn > *.col2, .gutterHTn > *.col1 {
+    margin-right: 0;
+    padding-left: 1.25px;
+    padding-right: 1.25px; }
+    .gutterHTn > *.col:first-child, .gutterHTn > *.col12:first-child, .gutterHTn > *.col11:first-child, .gutterHTn > *.col10:first-child, .gutterHTn > *.col9:first-child, .gutterHTn > *.col8:first-child, .gutterHTn > *.col7:first-child, .gutterHTn > *.col6:first-child, .gutterHTn > *.col5:first-child, .gutterHTn > *.col4:first-child, .gutterHTn > *.col3:first-child, .gutterHTn > *.col2:first-child, .gutterHTn > *.col1:first-child, .gutterHTn > *.col12:first-child, .gutterHTn > *.col11:first-child, .gutterHTn > *.col10:first-child, .gutterHTn > *.col9:first-child, .gutterHTn > *.col8:first-child, .gutterHTn > *.col7:first-child, .gutterHTn > *.col6:first-child, .gutterHTn > *.col5:first-child, .gutterHTn > *.col4:first-child, .gutterHTn > *.col3:first-child, .gutterHTn > *.col2:first-child, .gutterHTn > *.col1:first-child {
+      padding-left: 0; }
+    .gutterHTn > *.col:last-child:not(:only-child), .gutterHTn > *.col12:last-child:not(:only-child), .gutterHTn > *.col11:last-child:not(:only-child), .gutterHTn > *.col10:last-child:not(:only-child), .gutterHTn > *.col9:last-child:not(:only-child), .gutterHTn > *.col8:last-child:not(:only-child), .gutterHTn > *.col7:last-child:not(:only-child), .gutterHTn > *.col6:last-child:not(:only-child), .gutterHTn > *.col5:last-child:not(:only-child), .gutterHTn > *.col4:last-child:not(:only-child), .gutterHTn > *.col3:last-child:not(:only-child), .gutterHTn > *.col2:last-child:not(:only-child), .gutterHTn > *.col1:last-child:not(:only-child), .gutterHTn > *.col12:last-child:not(:only-child), .gutterHTn > *.col11:last-child:not(:only-child), .gutterHTn > *.col10:last-child:not(:only-child), .gutterHTn > *.col9:last-child:not(:only-child), .gutterHTn > *.col8:last-child:not(:only-child), .gutterHTn > *.col7:last-child:not(:only-child), .gutterHTn > *.col6:last-child:not(:only-child), .gutterHTn > *.col5:last-child:not(:only-child), .gutterHTn > *.col4:last-child:not(:only-child), .gutterHTn > *.col3:last-child:not(:only-child), .gutterHTn > *.col2:last-child:not(:only-child), .gutterHTn > *.col1:last-child:not(:only-child) {
+      padding-right: 0; }
+
+.gutterHSm > * {
+  margin-right: 5px; }
+  .gutterHSm > *.col, .gutterHSm > *.col12, .gutterHSm > *.col11, .gutterHSm > *.col10, .gutterHSm > *.col9, .gutterHSm > *.col8, .gutterHSm > *.col7, .gutterHSm > *.col6, .gutterHSm > *.col5, .gutterHSm > *.col4, .gutterHSm > *.col3, .gutterHSm > *.col2, .gutterHSm > *.col1, .gutterHSm > *.col12, .gutterHSm > *.col11, .gutterHSm > *.col10, .gutterHSm > *.col9, .gutterHSm > *.col8, .gutterHSm > *.col7, .gutterHSm > *.col6, .gutterHSm > *.col5, .gutterHSm > *.col4, .gutterHSm > *.col3, .gutterHSm > *.col2, .gutterHSm > *.col1 {
+    margin-right: 0;
+    padding-left: 2.5px;
+    padding-right: 2.5px; }
+    .gutterHSm > *.col:first-child, .gutterHSm > *.col12:first-child, .gutterHSm > *.col11:first-child, .gutterHSm > *.col10:first-child, .gutterHSm > *.col9:first-child, .gutterHSm > *.col8:first-child, .gutterHSm > *.col7:first-child, .gutterHSm > *.col6:first-child, .gutterHSm > *.col5:first-child, .gutterHSm > *.col4:first-child, .gutterHSm > *.col3:first-child, .gutterHSm > *.col2:first-child, .gutterHSm > *.col1:first-child, .gutterHSm > *.col12:first-child, .gutterHSm > *.col11:first-child, .gutterHSm > *.col10:first-child, .gutterHSm > *.col9:first-child, .gutterHSm > *.col8:first-child, .gutterHSm > *.col7:first-child, .gutterHSm > *.col6:first-child, .gutterHSm > *.col5:first-child, .gutterHSm > *.col4:first-child, .gutterHSm > *.col3:first-child, .gutterHSm > *.col2:first-child, .gutterHSm > *.col1:first-child {
+      padding-left: 0; }
+    .gutterHSm > *.col:last-child:not(:only-child), .gutterHSm > *.col12:last-child:not(:only-child), .gutterHSm > *.col11:last-child:not(:only-child), .gutterHSm > *.col10:last-child:not(:only-child), .gutterHSm > *.col9:last-child:not(:only-child), .gutterHSm > *.col8:last-child:not(:only-child), .gutterHSm > *.col7:last-child:not(:only-child), .gutterHSm > *.col6:last-child:not(:only-child), .gutterHSm > *.col5:last-child:not(:only-child), .gutterHSm > *.col4:last-child:not(:only-child), .gutterHSm > *.col3:last-child:not(:only-child), .gutterHSm > *.col2:last-child:not(:only-child), .gutterHSm > *.col1:last-child:not(:only-child), .gutterHSm > *.col12:last-child:not(:only-child), .gutterHSm > *.col11:last-child:not(:only-child), .gutterHSm > *.col10:last-child:not(:only-child), .gutterHSm > *.col9:last-child:not(:only-child), .gutterHSm > *.col8:last-child:not(:only-child), .gutterHSm > *.col7:last-child:not(:only-child), .gutterHSm > *.col6:last-child:not(:only-child), .gutterHSm > *.col5:last-child:not(:only-child), .gutterHSm > *.col4:last-child:not(:only-child), .gutterHSm > *.col3:last-child:not(:only-child), .gutterHSm > *.col2:last-child:not(:only-child), .gutterHSm > *.col1:last-child:not(:only-child) {
+      padding-right: 0; }
+
+.gutterH > * {
+  margin-right: 10px; }
+  .gutterH > *.col, .gutterH > *.col12, .gutterH > *.col11, .gutterH > *.col10, .gutterH > *.col9, .gutterH > *.col8, .gutterH > *.col7, .gutterH > *.col6, .gutterH > *.col5, .gutterH > *.col4, .gutterH > *.col3, .gutterH > *.col2, .gutterH > *.col1, .gutterH > *.col12, .gutterH > *.col11, .gutterH > *.col10, .gutterH > *.col9, .gutterH > *.col8, .gutterH > *.col7, .gutterH > *.col6, .gutterH > *.col5, .gutterH > *.col4, .gutterH > *.col3, .gutterH > *.col2, .gutterH > *.col1 {
+    margin-right: 0;
+    padding-left: 5px;
+    padding-right: 5px; }
+    .gutterH > *.col:first-child, .gutterH > *.col12:first-child, .gutterH > *.col11:first-child, .gutterH > *.col10:first-child, .gutterH > *.col9:first-child, .gutterH > *.col8:first-child, .gutterH > *.col7:first-child, .gutterH > *.col6:first-child, .gutterH > *.col5:first-child, .gutterH > *.col4:first-child, .gutterH > *.col3:first-child, .gutterH > *.col2:first-child, .gutterH > *.col1:first-child, .gutterH > *.col12:first-child, .gutterH > *.col11:first-child, .gutterH > *.col10:first-child, .gutterH > *.col9:first-child, .gutterH > *.col8:first-child, .gutterH > *.col7:first-child, .gutterH > *.col6:first-child, .gutterH > *.col5:first-child, .gutterH > *.col4:first-child, .gutterH > *.col3:first-child, .gutterH > *.col2:first-child, .gutterH > *.col1:first-child {
+      padding-left: 0; }
+    .gutterH > *.col:last-child:not(:only-child), .gutterH > *.col12:last-child:not(:only-child), .gutterH > *.col11:last-child:not(:only-child), .gutterH > *.col10:last-child:not(:only-child), .gutterH > *.col9:last-child:not(:only-child), .gutterH > *.col8:last-child:not(:only-child), .gutterH > *.col7:last-child:not(:only-child), .gutterH > *.col6:last-child:not(:only-child), .gutterH > *.col5:last-child:not(:only-child), .gutterH > *.col4:last-child:not(:only-child), .gutterH > *.col3:last-child:not(:only-child), .gutterH > *.col2:last-child:not(:only-child), .gutterH > *.col1:last-child:not(:only-child), .gutterH > *.col12:last-child:not(:only-child), .gutterH > *.col11:last-child:not(:only-child), .gutterH > *.col10:last-child:not(:only-child), .gutterH > *.col9:last-child:not(:only-child), .gutterH > *.col8:last-child:not(:only-child), .gutterH > *.col7:last-child:not(:only-child), .gutterH > *.col6:last-child:not(:only-child), .gutterH > *.col5:last-child:not(:only-child), .gutterH > *.col4:last-child:not(:only-child), .gutterH > *.col3:last-child:not(:only-child), .gutterH > *.col2:last-child:not(:only-child), .gutterH > *.col1:last-child:not(:only-child) {
+      padding-right: 0; }
+
+.gutterHLg > * {
+  margin-right: 20px; }
+  .gutterHLg > *.col, .gutterHLg > *.col12, .gutterHLg > *.col11, .gutterHLg > *.col10, .gutterHLg > *.col9, .gutterHLg > *.col8, .gutterHLg > *.col7, .gutterHLg > *.col6, .gutterHLg > *.col5, .gutterHLg > *.col4, .gutterHLg > *.col3, .gutterHLg > *.col2, .gutterHLg > *.col1, .gutterHLg > *.col12, .gutterHLg > *.col11, .gutterHLg > *.col10, .gutterHLg > *.col9, .gutterHLg > *.col8, .gutterHLg > *.col7, .gutterHLg > *.col6, .gutterHLg > *.col5, .gutterHLg > *.col4, .gutterHLg > *.col3, .gutterHLg > *.col2, .gutterHLg > *.col1 {
+    margin-right: 0;
+    padding-left: 10px;
+    padding-right: 10px; }
+    .gutterHLg > *.col:first-child, .gutterHLg > *.col12:first-child, .gutterHLg > *.col11:first-child, .gutterHLg > *.col10:first-child, .gutterHLg > *.col9:first-child, .gutterHLg > *.col8:first-child, .gutterHLg > *.col7:first-child, .gutterHLg > *.col6:first-child, .gutterHLg > *.col5:first-child, .gutterHLg > *.col4:first-child, .gutterHLg > *.col3:first-child, .gutterHLg > *.col2:first-child, .gutterHLg > *.col1:first-child, .gutterHLg > *.col12:first-child, .gutterHLg > *.col11:first-child, .gutterHLg > *.col10:first-child, .gutterHLg > *.col9:first-child, .gutterHLg > *.col8:first-child, .gutterHLg > *.col7:first-child, .gutterHLg > *.col6:first-child, .gutterHLg > *.col5:first-child, .gutterHLg > *.col4:first-child, .gutterHLg > *.col3:first-child, .gutterHLg > *.col2:first-child, .gutterHLg > *.col1:first-child {
+      padding-left: 0; }
+    .gutterHLg > *.col:last-child:not(:only-child), .gutterHLg > *.col12:last-child:not(:only-child), .gutterHLg > *.col11:last-child:not(:only-child), .gutterHLg > *.col10:last-child:not(:only-child), .gutterHLg > *.col9:last-child:not(:only-child), .gutterHLg > *.col8:last-child:not(:only-child), .gutterHLg > *.col7:last-child:not(:only-child), .gutterHLg > *.col6:last-child:not(:only-child), .gutterHLg > *.col5:last-child:not(:only-child), .gutterHLg > *.col4:last-child:not(:only-child), .gutterHLg > *.col3:last-child:not(:only-child), .gutterHLg > *.col2:last-child:not(:only-child), .gutterHLg > *.col1:last-child:not(:only-child), .gutterHLg > *.col12:last-child:not(:only-child), .gutterHLg > *.col11:last-child:not(:only-child), .gutterHLg > *.col10:last-child:not(:only-child), .gutterHLg > *.col9:last-child:not(:only-child), .gutterHLg > *.col8:last-child:not(:only-child), .gutterHLg > *.col7:last-child:not(:only-child), .gutterHLg > *.col6:last-child:not(:only-child), .gutterHLg > *.col5:last-child:not(:only-child), .gutterHLg > *.col4:last-child:not(:only-child), .gutterHLg > *.col3:last-child:not(:only-child), .gutterHLg > *.col2:last-child:not(:only-child), .gutterHLg > *.col1:last-child:not(:only-child) {
+      padding-right: 0; }
+
+.gutterVFlush:first-child, .gutterVSm > :first-child, .gutterV > :first-child, .gutterVMd > :first-child, .gutterVLg > :first-child {
+  margin-top: 0; }
+
+.gutterVFlush:last-child, .gutterVSm > :last-child, .gutterV > :last-child, .gutterVMd > :last-child, .gutterVLg > :last-child {
+  margin-bottom: 0; }
+
+.gutterVSm > * {
+  margin-bottom: 5px; }
+
+.gutterV > * {
+  margin-bottom: 10px; }
+
+.gutterVMd > * {
+  margin-bottom: 15px; }
+
+.gutterVLg > * {
+  margin-bottom: 20px; }
+
+.floR {
+  float: right; }
+
+.floL {
+  float: left; }
+
+.posA {
+  position: absolute; }
+
+.posR {
+  position: relative; }
+
+.posF {
+  position: fixed; }
+
+.modal {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(245, 245, 245, 0.96); }
+  .modal .modalContent {
+    min-width: 300px;
+    max-height: calc(100% - 50px);
+    border-radius: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    left: calc(50% - 24px);
+    transition: left 0.5s ease;
+    margin-bottom: 100px; }
+    .chatOpen .modal .modalContent {
+      left: calc(50% - 112.5px); }
+    .modal .modalContent > .cornerTR {
+      top: -40px;
+      right: 0; }
+  .modal.modalTop .modalContent,
+  .modal.modalScrollPage .modalContent {
+    top: 15px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    left: calc(50% - 24px); }
+    .chatOpen .modal.modalTop .modalContent, .chatOpen
+    .modal.modalScrollPage .modalContent {
+      left: calc(50% - 112.5px); }
+  .modal.modalScrollPage {
+    overflow-y: scroll;
+    transform: none; }
+    .modal.modalScrollPage .modalContent {
+      max-height: none;
+      margin-bottom: 40px;
+      padding: 0;
+      width: 957px;
+      overflow: visible;
+      left: 0;
+      transform: none;
+      margin-left: calc(((100% - (1005px)) / 2) + 20px);
+      transition: margin-left 0.5s ease;
+      margin-bottom: 100px; }
+      .chatOpen .modal.modalScrollPage .modalContent {
+        left: 0;
+        margin-left: calc(((100% - (1177px)) / 2)); }
+      .modal.modalScrollPage .modalContent > .cornerTR {
+        right: auto;
+        left: calc(957px - 35px);
+        top: 0; }
+      .modal.modalScrollPage .modalContent .topControls {
+        margin-bottom: 5px;
+        min-height: 35px; }
+
+.ctrl, .btn, .btnRadio, .btnTxt, .iconBtn, .iconBtnSm, .btnHg {
+  height: 35px;
+  padding: 0 24px;
+  border-radius: 2px;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 1.4rem;
+  font-weight: 400;
+  box-sizing: border-box;
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  -webkit-user-select: none; }
+
+.btn, .btnRadio, .btnTxt, .iconBtn, .iconBtnSm, .btnHg {
+  cursor: pointer;
+  font-weight: 700;
+  transition: border 0.15s ease; }
+  .btn:hover:not(.btnRadio), .btnRadio:hover:not(.btnRadio), .btnTxt:hover:not(.btnRadio), .iconBtn:hover:not(.btnRadio), .iconBtnSm:hover:not(.btnRadio), .btnHg:hover:not(.btnRadio), .btn:focus:not(.btnRadio), .btnRadio:focus:not(.btnRadio), .btnTxt:focus:not(.btnRadio), .iconBtn:focus:not(.btnRadio), .iconBtnSm:focus:not(.btnRadio), .btnHg:focus:not(.btnRadio) {
+    text-decoration: none;
+    cursor: pointer;
+    outline: 0; }
+  .bar .btn:not(.barBtn), .barSm .btn:not(.barBtn), .barLg .btn:not(.barBtn), .bar .btnRadio:not(.barBtn), .barSm .btnRadio:not(.barBtn), .barLg .btnRadio:not(.barBtn), .bar .btnTxt:not(.barBtn), .barSm .btnTxt:not(.barBtn), .barLg .btnTxt:not(.barBtn), .bar .iconBtn:not(.barBtn), .barSm .iconBtn:not(.barBtn), .barLg .iconBtn:not(.barBtn), .bar .iconBtnSm:not(.barBtn), .barSm .iconBtnSm:not(.barBtn), .barLg .iconBtnSm:not(.barBtn), .bar .btnHg:not(.barBtn), .barSm .btnHg:not(.barBtn), .barLg .btnHg:not(.barBtn) {
+    line-height: 50px;
+    height: 50px;
+    border: none; }
+  .barSm .btn, .barSm .btnRadio, .barSm .btnTxt, .barSm .iconBtn, .barSm .iconBtnSm, .barSm .btnHg {
+    line-height: 40px;
+    height: 40px;
+    border: none; }
+  .barLg .btn, .barLg .btnRadio, .barLg .btnTxt, .barLg .iconBtn, .barLg .iconBtnSm, .barLg .btnHg {
+    line-height: 55px;
+    height: 55px;
+    border: none; }
+  .btn.btnProcessing, .btnProcessing.btnRadio, .btnProcessing.btnTxt, .btnProcessing.iconBtn, .btnProcessing.iconBtnSm, .btnProcessing.btnHg {
+    position: relative; }
+    .btn.btnProcessing .spinner, .btnProcessing.btnRadio .spinner, .btnProcessing.btnTxt .spinner, .btnProcessing.iconBtn .spinner, .btnProcessing.iconBtnSm .spinner, .btnProcessing.btnHg .spinner {
+      display: none; }
+    .btn.btnProcessing.processing, .btnProcessing.processing.btnRadio, .btnProcessing.processing.btnTxt, .btnProcessing.processing.iconBtn, .btnProcessing.processing.iconBtnSm, .btnProcessing.processing.btnHg {
+      pointer-events: none; }
+      .btn.btnProcessing.processing::before, .btnProcessing.processing.btnRadio::before, .btnProcessing.processing.btnTxt::before, .btnProcessing.processing.iconBtn::before, .btnProcessing.processing.iconBtnSm::before, .btnProcessing.processing.btnHg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: inherit;
+        z-index: 1; }
+      .btn.btnProcessing.processing .spinner, .btnProcessing.processing.btnRadio .spinner, .btnProcessing.processing.btnTxt .spinner, .btnProcessing.processing.iconBtn .spinner, .btnProcessing.processing.iconBtnSm .spinner, .btnProcessing.processing.btnHg .spinner {
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        right: 0;
+        bottom: 0;
+        background-color: inherit;
+        transform: translate(-50%, -50%);
+        border-radius: inherit;
+        width: 25px;
+        height: 25px;
+        z-index: 1; }
+  .btn.confirmDisabled, .confirmDisabled.btnRadio, .confirmDisabled.btnTxt, .confirmDisabled.iconBtn, .confirmDisabled.iconBtnSm, .confirmDisabled.btnHg {
+    border-width: 0;
+    pointer-events: none;
+    opacity: 0.4; }
+
+.btnRadio {
+  border: 0;
+  padding: 0 6px;
+  font-weight: normal;
+  height: auto; }
+  .btnRadio input[type="radio"] {
+    display: none; }
+    .btnRadio input[type="radio"] + label:hover {
+      cursor: inherit; }
+    .btnRadio input[type="radio"] + label:before {
+      content: '';
+      display: inline-block;
+      box-sizing: border-box;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      border-width: 1px;
+      border-style: solid;
+      vertical-align: middle;
+      position: relative;
+      top: -0.1em;
+      margin-right: 0.4em;
+      margin-left: -0.25em; }
+      .btnRadio input[type="radio"] + label:before:hover {
+        cursor: inherit; }
+
+.btnTxt {
+  border: none; }
+
+.iconBtn {
+  font-size: 2rem;
+  padding: 0 12px;
+  width: 35px; }
+
+.iconBtnSm {
+  font-size: 1.4rem;
+  padding: 0;
+  width: 30px;
+  height: 30px; }
+
+.btnThin {
+  padding: 0 12px; }
+
+.btnHg {
+  font-size: 2rem;
+  height: 56px; }
+
+.btnStrip {
+  overflow: hidden; }
+  .btnStrip > .btn, .btnStrip > .btnRadio, .btnStrip > .btnTxt, .btnStrip > .iconBtn, .btnStrip > .iconBtnSm, .btnStrip > .btnHg {
+    border-radius: 0;
+    float: left; }
+  .btnStrip > .btn:not(:last-child):not(:hover), .btnStrip > .btnRadio:not(:last-child):not(:hover), .btnStrip > .btnTxt:not(:last-child):not(:hover), .btnStrip > .iconBtn:not(:last-child):not(:hover), .btnStrip > .iconBtnSm:not(:last-child):not(:hover), .btnStrip > .btnHg:not(:last-child):not(:hover) {
+    border-right-color: transparent; }
+  .btnStrip > .btn:first-child, .btnStrip > .btnRadio:first-child, .btnStrip > .btnTxt:first-child, .btnStrip > .iconBtn:first-child, .btnStrip > .iconBtnSm:first-child, .btnStrip > .btnHg:first-child {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px; }
+  .btnStrip > .btn:last-child, .btnStrip > .btnRadio:last-child, .btnStrip > .btnTxt:last-child, .btnStrip > .iconBtn:last-child, .btnStrip > .iconBtnSm:last-child, .btnStrip > .btnHg:last-child {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px; }
+
+.btnStrip .btnRadio {
+  margin-right: 7px; }
+  .btnStrip .btnRadio:last-child {
+    margin-right: 0; }
+
+*[class*="ion-"]:before {
+  pointer-events: none;
+  line-height: 1em; }
+
+.foldDown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  transition: 0.2s ease;
+  overflow: hidden; }
+  .foldDown.open {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+
+.searchWrapper {
+  position: relative;
+  width: 100%; }
+  .searchWrapper input {
+    text-indent: 1.5em;
+    /* make room for icon */ }
+  .searchWrapper:before {
+    content: "🔍";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.45em;
+    left: 8px;
+    color: inherit; }
+
+.cornerTR {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+  font-size: 2.6rem;
+  cursor: pointer; }
+
+input[type=range] {
+  -webkit-appearance: none;
+  height: 22px;
+  width: 100%; }
+  input[type=range]:disabled {
+    pointer-events: none;
+    opacity: 0.4; }
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  background: #ccc; }
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 22px;
+  width: 22px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 50%;
+  margin-top: -9px; }
+
+input[type=range]:focus {
+  outline: none; }
+
+form {
+  margin: 0;
+  font-size: 1.4rem; }
+  form label {
+    line-height: 4rem;
+    font-weight: 500;
+    -webkit-user-select: none; }
+
+input::-webkit-input-placeholder,
+select::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+.txPlaceholder {
+  color: inherit;
+  opacity: 0.35; }
+
+input,
+select,
+textarea,
+.trumbowyg-editor {
+  border: none;
+  outline: none;
+  outline-color: transparent;
+  background: none;
+  color: inherit;
+  border-radius: 3px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 1.4rem; }
+
+.trumbowyg-editor {
+  border-radius: 0; }
+
+.trumbowyg textarea {
+  display: none; }
+
+.select2-container--focus .select2-selection__rendered,
+.select2Tags + .select2-container .select2-container--default .select2-selection--multiple .select2-selection__rendered,
+.select2-container--focus .select2-selection {
+  outline: none; }
+
+select {
+  width: 100%; }
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+textarea,
+.select2-container--focus .select2-selection__rendered,
+.select2Tags + .select2-container .select2-container--default .select2-selection--multiple .select2-selection__rendered,
+.trumbowyg-editor {
+  border-style: solid;
+  border-width: 1px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+  line-height: 40px; }
+
+input[type="number"].noSpin::-webkit-inner-spin-button {
+  display: none; }
+
+.inputPercentWrapper {
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  display: inline-block; }
+  .inputPercentWrapper input {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    width: calc(100% - 1.5em);
+    padding-right: 0; }
+    .inputPercentWrapper input::-webkit-outer-spin-button, .inputPercentWrapper input::-webkit-inner-spin-button {
+      display: none; }
+  .inputPercentWrapper:after {
+    content: "%";
+    display: inline-block; }
+
+.select2-container--default.select2-container--focus .select2-selection {
+  border: none; }
+
+textarea {
+  background: none;
+  outline: none;
+  -webkit-appearance: none;
+  resize: none;
+  line-height: 1.2em;
+  padding: 10px;
+  overflow: hidden; }
+  textarea:focus {
+    overflow: auto; }
+  textarea.resizable {
+    resize: vertical; }
+
+.errorList {
+  color: red;
+  margin-bottom: 10px; }
+  .errorList li {
+    margin-bottom: 5px; }
+    .errorList li i {
+      margin-right: 5px; }
+
+label.error input, label.error textarea {
+  border: 1px solid red; }
+
+.required::after {
+  content: '*';
+  position: absolute;
+  font-size: 130%; }
+
+.inputSelect {
+  position: relative; }
+  .inputSelect input {
+    padding-right: 75px; }
+  .inputSelect .select2-container {
+    width: 70px !important;
+    position: absolute;
+    right: 1px;
+    top: 1px; }
+    .inputSelect .select2-container .select2-selection {
+      border-width: 0; }
+  .inputSelect::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    right: 71px;
+    width: 1px;
+    background-color: #DDD; }
+
+input[type="radio"]:checked + label {
+  font-weight: 700; }
+
+input[type="checkbox"] {
+  display: none; }
+  input[type="checkbox"] + label {
+    display: flex;
+    align-items: baseline;
+    cursor: pointer; }
+    input[type="checkbox"] + label:before {
+      content: "\f372";
+      font-family: Ionicons;
+      line-height: inherit;
+      font-size: 1.5em;
+      position: relative;
+      top: 0.15em;
+      margin-right: 0.25em; }
+      .flexVCent input[type="checkbox"] + label:before {
+        top: 0; }
+  input[type="checkbox"]:checked + label:before {
+    content: "\f373"; }
+  input[type="checkbox"].fauxChecked {
+    pointer-events: none; }
+    input[type="checkbox"].fauxChecked + label {
+      pointer-events: none; }
+      input[type="checkbox"].fauxChecked + label:before {
+        content: "\f373"; }
+
+.select2-container {
+  font-size: 1.4rem;
+  display: block; }
+  .select2-container .select2-selection {
+    border-radius: 2px;
+    height: 4rem; }
+    .select2-container .select2-selection .select2-selection__rendered {
+      line-height: 4rem; }
+    .select2-container .select2-selection .select2-selection__arrow {
+      height: 4rem;
+      width: 4rem; }
+      .select2-container .select2-selection .select2-selection__arrow b {
+        border-width: 6px 5px 0 5px;
+        margin-left: -6px;
+        margin-top: -5px; }
+  .select2-container.select2-container--open.select2-container--below .select2-selection--single {
+    border-bottom: 0; }
+
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+  border-width: 0 5px 6px 5px; }
+
+.select2Small .select2-container,
+.select2Small + .select2-container {
+  font-size: 1.2rem; }
+  .select2Small .select2-container .select2-selection,
+  .select2Small + .select2-container .select2-selection {
+    height: 3rem; }
+    .select2Small .select2-container .select2-selection .select2-selection__rendered,
+    .select2Small + .select2-container .select2-selection .select2-selection__rendered {
+      padding-left: 6px;
+      line-height: 3rem; }
+    .select2Small .select2-container .select2-selection .select2-selection__arrow,
+    .select2Small + .select2-container .select2-selection .select2-selection__arrow {
+      height: 3.25rem;
+      width: 2.75rem; }
+  .select2Small .select2-container .select2-results__option,
+  .select2Small + .select2-container .select2-results__option {
+    padding-top: 4px;
+    padding-bottom: 4px; }
+
+.select2TagsWrap, .select2TagsWrapDropDown {
+  position: relative; }
+  .select2TagsWrap .select2Tags + .select2-container.select2-container--default .select2-selection--multiple, .select2TagsWrapDropDown .select2Tags + .select2-container.select2-container--default .select2-selection--multiple {
+    height: auto; }
+  .select2TagsWrap .select2Tags + .select2-container.select2-container--default .select2-selection--multiple .select2-selection__rendered, .select2TagsWrapDropDown .select2Tags + .select2-container.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    padding-bottom: 5px;
+    border-radius: 3px; }
+  .select2TagsWrap .select2Tags + .select2-container.select2-container--default .select2-search--inline, .select2TagsWrapDropDown .select2Tags + .select2-container.select2-container--default .select2-search--inline {
+    padding: 1px;
+    margin-top: 5px;
+    line-height: 27px; }
+  .select2TagsWrap .select2Tags + .select2-container.select2-container--default .select2-selection--multiple .select2-selection__choice, .select2TagsWrapDropDown .select2Tags + .select2-container.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    padding-left: 10px;
+    font-weight: 500;
+    line-height: 27px; }
+    .select2TagsWrap .select2Tags + .select2-container.select2-container--default .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove, .select2TagsWrapDropDown .select2Tags + .select2-container.select2-container--default .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove {
+      float: right;
+      font-size: 2rem;
+      font-weight: 100;
+      position: relative;
+      top: -2px;
+      margin-left: 5px; }
+  .select2TagsWrap .select2Tags + .select2-container.select2-container--focus .select2-selection, .select2TagsWrapDropDown .select2Tags + .select2-container.select2-container--focus .select2-selection {
+    border: none; }
+  .select2TagsWrap .select2Tags + .select2-container.select2-container--focus + .tagsPlaceholder, .select2TagsWrapDropDown .select2Tags + .select2-container.select2-container--focus + .tagsPlaceholder {
+    display: none; }
+  .select2TagsWrap.hashPrefacedTags .select2Tags + .select2-container .select2-selection__choice::before, .hashPrefacedTags.select2TagsWrapDropDown .select2Tags + .select2-container .select2-selection__choice::before {
+    content: '#'; }
+  .select2TagsWrap .tagsPlaceholder, .select2TagsWrapDropDown .tagsPlaceholder {
+    display: none;
+    position: absolute;
+    top: 15px;
+    margin-left: 10px;
+    pointer-events: none;
+    font-size: 1.4rem;
+    color: #aaa; }
+    .select2TagsWrap .tagsPlaceholder.emptyOfTags, .select2TagsWrapDropDown .tagsPlaceholder.emptyOfTags {
+      display: block;
+      top: 0;
+      line-height: 27px;
+      margin-top: 6px; }
+  .select2TagsWrap:not(.showDropdown) .tagsDropdown, .select2TagsWrapDropDown:not(.showDropdown) .tagsDropdown {
+    display: none; }
+  .select2TagsWrap.showDropdown .tagsDropdown .select2-container--open, .showDropdown.select2TagsWrapDropDown .tagsDropdown .select2-container--open {
+    margin-top: -7px;
+    border: none; }
+  .select2TagsWrap .tagsDropdown .select2-container--open, .select2TagsWrapDropDown .tagsDropdown .select2-container--open {
+    border: 1px solid; }
+
+#statusBar {
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+  width: 100%; }
+  #statusBar .statusMessageWrap {
+    height: 0;
+    overflow: hidden;
+    transition: opacity 1.5s, height 1s; }
+  #statusBar .statusMessageWrap.slideUp {
+    height: 30px; }
+  #statusBar .statusMessage {
+    opacity: 0.4;
+    box-sizing: border-box;
+    padding: 0 10px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-style: italic;
+    background: #000;
+    border-bottom: 1px solid #222;
+    position: relative;
+    top: -1px; }
+
+.tabbedModal .modalContent {
+  width: 950px; }
+  .tabbedModal .modalContent .cornerTR {
+    right: 25px; }
+
+.tabbedModal .tabColumn {
+  width: 200px;
+  flex-shrink: 0; }
+  .tabbedModal .tabColumn .tab {
+    position: relative; }
+    .tabbedModal .tabColumn .tab.active {
+      font-weight: bold; }
+      .tabbedModal .tabColumn .tab.active::after {
+        content: "";
+        display: block;
+        border-width: 1px;
+        border-style: solid;
+        height: 100%;
+        position: absolute;
+        left: -16px;
+        top: 0; }
+
+.tabbedModal .tabContent {
+  max-width: 757px; }
+  .tabbedModal .tabContent .modalContentCornerBtn {
+    right: 15px;
+    top: 8px;
+    font-size: 1.4rem;
+    position: absolute; }
+
+.tabbedModal.fixedNav .tabColumn {
+  position: fixed;
+  top: 57px; }
+
+.tabbedModal.fixedNav .tabContent {
+  margin-left: 210px; }
+
+.closeIcon {
+  position: relative;
+  width: 24px;
+  height: 24px; }
+  .closeIcon span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-25%, -25%);
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+
+.trumbowyg .trumbowyg-editor {
+  height: auto !important;
+  /* gross hack to stop trumbowyg from setting inline height to huge numbers when external
+  images are added */ }
+
+.popInMessageHolder {
+  position: fixed;
+  margin: 0 auto;
+  left: 50%;
+  top: 140px;
+  transform: translateX(-50%);
+  z-index: 1; }
+  .popInMessageHolder .popInMessage {
+    margin-bottom: 25px; }
+
+.popInMessage {
+  max-width: 300px;
+  border-radius: 2px;
+  position: relative;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto; }
+  .popInMessage .closeIcon {
+    position: absolute;
+    right: -17px;
+    top: -8px; }
+
+.listingCard {
+  width: 225px;
+  height: 283px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  position: relative;
+  bottom: 0;
+  transition: all .2s ease; }
+  .listingCard .gridViewContent .listingImage {
+    width: 223px;
+    height: 225px;
+    position: relative;
+    background-size: cover; }
+  .listingCard .gridViewContent .listingIcons {
+    position: absolute;
+    top: 8px;
+    right: 8px; }
+  .listingCard .overlayPanel {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1; }
+    .listingCard .overlayPanel .overlayPanelInner {
+      opacity: 0.9;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0; }
+  .listingCard .editOverlay .btn, .listingCard .editOverlay .btnRadio, .listingCard .editOverlay .btnTxt, .listingCard .editOverlay .iconBtn, .listingCard .editOverlay .iconBtnSm, .listingCard .editOverlay .btnHg {
+    z-index: 1; }
+  .listingsGrid:not(.listingsGridListView) .listingCard:hover {
+    bottom: 4px; }
+  .listingCard:hover:not(.listingDeleting):not(.listingDeleted) .editOverlay {
+    display: flex; }
+  .listingCard .deleteOverlay {
+    align-items: center;
+    justify-content: center; }
+    .listingCard .deleteOverlay .deletingText, .listingCard .deleteOverlay .deletedText {
+      display: none;
+      text-align: center; }
+  .listingCard.listingDeleting, .listingCard.listingDeleted {
+    cursor: default;
+    pointer-events: none; }
+    .listingCard.listingDeleting .deleteOverlay, .listingCard.listingDeleted .deleteOverlay {
+      display: flex; }
+      .listingCard.listingDeleting .deleteOverlay .deletingText, .listingCard.listingDeleting .deleteOverlay .deletedText, .listingCard.listingDeleted .deleteOverlay .deletingText, .listingCard.listingDeleted .deleteOverlay .deletedText {
+        z-index: 1; }
+  .listingCard.listingDeleting .deleteOverlay .deletingText {
+    display: block; }
+  .listingCard.listingDeleting .deleteOverlay .deletedText {
+    display: none; }
+  .listingCard.listingDeleted .deleteOverlay .deletingText {
+    display: none; }
+  .listingCard.listingDeleted .deleteOverlay .deletedText {
+    display: block; }
+  .listingCard .listViewContent {
+    display: none; }
+    .listingCard .listViewContent .listingImage {
+      width: 45px;
+      height: 45px;
+      background-size: cover; }
+  .listingsGridListView .listingCard {
+    padding: 10px;
+    display: block;
+    width: 100%;
+    height: auto; }
+    .listingsGridListView .listingCard .listViewContent {
+      display: block; }
+    .listingsGridListView .listingCard .gridViewContent {
+      display: none; }
+    .listingsGridListView .listingCard .priceCol {
+      padding-right: 20px; }
+    .listingsGridListView .listingCard .freeShipCol {
+      padding-right: 20px; }
+
+.listingsGrid {
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 0; }
+  .listingsGrid .listingCard {
+    margin: 0 15px 15px 0;
+    font-size: 1.3rem; }
+    .listingsGrid .listingCard:nth-child(3n) {
+      margin-right: 0; }
+  .listingsGrid.listingsGridListView {
+    margin: 0; }
+    .listingsGrid.listingsGridListView .listingCard {
+      margin: 0;
+      border-radius: 0;
+      padding: 6px;
+      box-sizing: border-box; }
+      .listingsGrid.listingsGridListView .listingCard:first-child {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px; }
+      .listingsGrid.listingsGridListView .listingCard:last-child {
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px; }
+      .listingsGrid.listingsGridListView .listingCard:not(:last-child) {
+        border-bottom-color: transparent; }
+        .listingsGrid.listingsGridListView .listingCard:not(:last-child):hover {
+          border-bottom-color: inherit; }
+  .listingsGrid:empty::after {
+    content: attr(data-no-results-text); }
+
+.spinner.spinnerLg {
+  width: 80px;
+  height: 80px; }
+
+.spinner.spinnerSm {
+  width: 20px;
+  height: 20px; }
+
+.pageNav {
+  -webkit-app-region: drag;
+  position: relative; }
+  .pageNav .navBar {
+    border-bottom-width: 1px;
+    border-bottom-style: solid; }
+    .pageNav .navBar .btn, .pageNav .navBar .btnRadio, .pageNav .navBar .btnTxt, .pageNav .navBar .iconBtn, .pageNav .navBar .iconBtnSm, .pageNav .navBar .btnHg,
+    .pageNav .navBar .iconBtn {
+      height: auto;
+      line-height: 1em; }
+    .pageNav .navBar .barBtn {
+      height: 28px;
+      padding: 9px; }
+    .pageNav .navBar .iconPad {
+      padding: 0 5px; }
+    .pageNav .navBar .pageNavCenter {
+      flex-grow: 1;
+      margin: auto 10px; }
+    .pageNav .navBar .addressBar {
+      box-sizing: border-box;
+      padding: 5px 10px;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 2px;
+      transition: border-color .2s;
+      font-size: 1.4rem;
+      line-height: 1em;
+      text-indent: 18px; }
+    .pageNav .navBar .bookmarkPage {
+      height: 31px;
+      width: 34px; }
+    .pageNav .navBar #AvatarBtn {
+      border-width: 2px;
+      border-style: solid;
+      margin: 5px 0 5px 5px; }
+    .pageNav .navBar #testnetFlag {
+      font-size: 1.2rem;
+      white-space: nowrap; }
+  .pageNav a, .pageNav input, .pageNav .btn, .pageNav .btnRadio, .pageNav .btnTxt, .pageNav .iconBtn, .pageNav .iconBtnSm, .pageNav .btnHg, .pageNav .iconBtn {
+    -webkit-app-region: no-drag; }
+  .pageNav.notNavigable .iconBtn,
+  .pageNav.notNavigable .addressBar,
+  .pageNav.notNavigable .navListBtn {
+    pointer-events: none;
+    opacity: 0.4; }
+  .pageNav .windowControls {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex-direction: row; }
+    .pageNav .windowControls > * {
+      flex: 0 0 auto; }
+    .pageNav .windowControls a {
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      position: relative; }
+  .pageNav.macStyleWindowControls .windowControlsHolder {
+    order: -1; }
+  .pageNav.macStyleWindowControls .windowControls a {
+    border-radius: 50%;
+    color: #000;
+    text-align: center;
+    margin-right: 8px;
+    box-sizing: border-box; }
+    .pageNav.macStyleWindowControls .windowControls a.navClose {
+      background-color: #FF6058;
+      border: solid 1px #E1473F; }
+    .pageNav.macStyleWindowControls .windowControls a.navMin {
+      background-color: #FFBD2E;
+      border: solid 1px #E0A117; }
+    .pageNav.macStyleWindowControls .windowControls a.navMax {
+      background-color: #29CB41;
+      border: solid 1px #13AD29;
+      margin-right: 0; }
+    .pageNav.macStyleWindowControls .windowControls a span {
+      visibility: hidden;
+      font-size: 10px; }
+  .pageNav.macStyleWindowControls .windowControls:hover span {
+    visibility: visible; }
+  .pageNav.winStyleWindowControls .windowControlsHolder {
+    order: 1000;
+    padding-left: 10px; }
+  .pageNav.winStyleWindowControls .windowControls a {
+    margin-right: 8px;
+    height: 30px; }
+    .pageNav.winStyleWindowControls .windowControls a span {
+      font-size: 30px;
+      line-height: 1em; }
+    .pageNav.winStyleWindowControls .windowControls a.navMin {
+      order: 1;
+      height: 12px;
+      border-bottom-width: 1px;
+      border-bottom-style: solid; }
+      .pageNav.winStyleWindowControls .windowControls a.navMin span {
+        visibility: hidden; }
+    .pageNav.winStyleWindowControls .windowControls a.navClose {
+      order: 3; }
+    .pageNav.winStyleWindowControls .windowControls a.navMax {
+      border-width: 1px;
+      border-style: solid;
+      height: 12px;
+      order: 2; }
+      .pageNav.winStyleWindowControls .windowControls a.navMax span {
+        visibility: hidden; }
+  .pageNav .navListWrapper {
+    z-index: 2;
+    padding: 0 10px 10px 1px;
+    right: -10px; }
+    .pageNav .navListWrapper .navList {
+      box-sizing: border-box;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-width: 1px;
+      border-style: solid;
+      width: 235px;
+      padding: 10px; }
+      .pageNav .navListWrapper .navList .listItem {
+        display: flex; }
+        .pageNav .navListWrapper .navList .listItem > * {
+          flex-shrink: 0;
+          box-sizing: border-box;
+          padding-right: 5px;
+          word-break: break-all; }
+          .pageNav .navListWrapper .navList .listItem > *:last-child {
+            padding-right: 0; }
+          .pageNav .navListWrapper .navList .listItem > *:first-child {
+            flex-shrink: 1;
+            flex-grow: 1; }
+        .pageNav .navListWrapper .navList .listItem.connectedServerListItem {
+          position: relative; }
+          .pageNav .navListWrapper .navList .listItem.connectedServerListItem::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -10px;
+            bottom: 0;
+            width: 11px; }
+  .pageNav .connManagementContainer {
+    z-index: 1;
+    width: 233px;
+    right: 234px; }
+    .pageNav .connManagementContainer .listBox {
+      padding: 10px; }
+      .pageNav .connManagementContainer .listBox .listItem {
+        display: flex; }
+      .pageNav .connManagementContainer .listBox .serverList .listItem > span {
+        padding-left: 15px;
+        position: relative; }
+        .pageNav .connManagementContainer .listBox .serverList .listItem > span .connectedIcon {
+          position: absolute;
+          top: -5px;
+          left: 0; }
+  .pageNav .navOverlay {
+    display: none;
+    position: fixed;
+    z-index: 0; }
+    .pageNav .navOverlay.open {
+      display: block; }
+
+#chatCloseBtn {
+  position: absolute;
+  top: 65px;
+  right: -220px;
+  width: 40px;
+  height: 40px;
+  z-index: 3;
+  border-radius: 0;
+  font-size: 2.6rem;
+  border-bottom-width: 0;
+  transition: right 0.5s ease; }
+  .chatOpen #chatCloseBtn {
+    right: 10px; }
+
+#chatContainer .chat .chatHead {
+  cursor: pointer;
+  position: relative;
+  padding: 0 5px;
+  box-sizing: border-box; }
+  #chatContainer .chat .chatHead .unreadBadge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    line-height: 18px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    border-width: 1px;
+    border-style: solid; }
+    #chatContainer .chat .chatHead .unreadBadge.ellipsisShown {
+      line-height: 14px; }
+  #chatContainer .chat .chatHead .headContent {
+    padding: 5px;
+    max-height: 31px;
+    flex-grow: 1; }
+  #chatContainer .chat .chatHead .handleGuid {
+    max-width: 60px;
+    display: inline-block;
+    vertical-align: middle; }
+  #chatContainer .chat .chatHead:first-child {
+    margin-top: 5px; }
+
+#chatContainer .chat .topUnreadBanner, #chatContainer .chat .bottomUnreadBanner {
+  display: none;
+  padding: 10px;
+  font-size: 1.2rem;
+  position: fixed;
+  right: 16px;
+  font-weight: bold;
+  border-radius: 2px;
+  transition: all 0.5s ease; }
+  #chatContainer .chat .topUnreadBanner .fullText, #chatContainer .chat .bottomUnreadBanner .fullText {
+    display: none; }
+  .chatOpen #chatContainer .chat .topUnreadBanner, .chatOpen #chatContainer .chat .bottomUnreadBanner {
+    right: 112.5px;
+    transform: translateX(50%); }
+    .chatOpen #chatContainer .chat .topUnreadBanner .arrowOnly, .chatOpen #chatContainer .chat .bottomUnreadBanner .arrowOnly {
+      display: none; }
+    .chatOpen #chatContainer .chat .topUnreadBanner .fullText, .chatOpen #chatContainer .chat .bottomUnreadBanner .fullText {
+      display: inline; }
+  #chatContainer .chat .topUnreadBanner:hover, #chatContainer .chat .bottomUnreadBanner:hover {
+    text-decoration: none; }
+
+#chatContainer .chat.outOfViewUnreadsAbove .topUnreadBanner {
+  display: block;
+  top: 105px; }
+
+#chatContainer .chat.outOfViewUnreadsBelow .bottomUnreadBanner {
+  display: block;
+  bottom: 45px; }
+
+.chat .chatIcon {
+  border-width: 2px;
+  border-style: solid;
+  width: 38px;
+  height: 38px; }
+
+.chatConversation {
+  border-width: 1px;
+  border-style: solid;
+  border-color: inherit;
+  height: 100%; }
+  .chatConversation .convoHeader {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    z-index: 2; }
+    .chatConversation .convoHeader .btn, .chatConversation .convoHeader .btnRadio, .chatConversation .convoHeader .btnTxt, .chatConversation .convoHeader .iconBtn, .chatConversation .convoHeader .iconBtnSm, .chatConversation .convoHeader .btnHg {
+      border-width: 0;
+      width: 20px; }
+      .chatConversation .convoHeader .btn.ion-ios-close-empty, .chatConversation .convoHeader .ion-ios-close-empty.btnRadio, .chatConversation .convoHeader .ion-ios-close-empty.btnTxt, .chatConversation .convoHeader .ion-ios-close-empty.iconBtn, .chatConversation .convoHeader .ion-ios-close-empty.iconBtnSm, .chatConversation .convoHeader .ion-ios-close-empty.btnHg {
+        font-size: 2.6rem; }
+    .chatConversation .convoHeader .convoProfileHeader .handle {
+      max-width: 105px;
+      display: block;
+      font-weight: bold; }
+  .chatConversation .convoMessagesWindow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 1px;
+    bottom: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    overflow-x: hidden;
+    overflow-y: auto; }
+    .chatConversation .convoMessagesWindow .spinner {
+      display: none;
+      margin: 0 auto;
+      padding: 10px; }
+    .chatConversation .convoMessagesWindow .typingIndicator {
+      position: fixed;
+      left: 50%;
+      transform: translate(-50%, -110%);
+      border-style: solid;
+      border-width: 1px;
+      border-top-width: 0;
+      max-width: 190px;
+      z-index: 1;
+      padding: 5px 10px;
+      transition: transform 0.3s ease; }
+      .chatConversation .convoMessagesWindow .typingIndicator .typingUsername {
+        max-width: 121px;
+        display: inline-block;
+        vertical-align: middle; }
+    .chatConversation .convoMessagesWindow .messagesFetchError {
+      margin-top: 10px;
+      margin-bottom: 5px; }
+    .chatConversation .convoMessagesWindow .chatConvoMessages {
+      padding: 10px 0; }
+      .chatConversation .convoMessagesWindow .chatConvoMessages .convoMessage .msgContentBox {
+        padding: 5px;
+        margin-top: 3px;
+        display: inline-block;
+        max-width: 186px; }
+        .chatConversation .convoMessagesWindow .chatConvoMessages .convoMessage .msgContentBox > span {
+          word-break: break-word; }
+        .chatConversation .convoMessagesWindow .chatConvoMessages .convoMessage .msgContentBox img {
+          max-width: 100%; }
+      .chatConversation .convoMessagesWindow .chatConvoMessages .convoMessage .timestampLine {
+        position: absolute;
+        margin-top: 3px; }
+  .chatConversation.loadingMessages .spinner {
+    display: block; }
+  .chatConversation.loadingMessages.noMessages .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55px;
+    height: 55px; }
+  .chatConversation.loadingMessages.noMessages .messagesFetchError {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+  .chatConversation.noMessages .messagesFetchError {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0; }
+  .chatConversation.isTyping .typingIndicator {
+    transform: translate(-50%, 0); }
+  .chatConversation .deletingOverlay {
+    display: none;
+    font-size: 1.5rem; }
+    .chatConversation .deletingOverlay > div {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      text-align: center; }
+  .chatConversation.isDeleting .deletingOverlay {
+    display: block; }
+  .chatConversation.isDeleting .deleteConvoMenuItem {
+    pointer-events: none;
+    opacity: 0.4; }
+  .chatConversation .subMenu {
+    padding: 10px;
+    width: 130px;
+    border-style: solid;
+    border-width: 1px;
+    border-top-width: 0;
+    border-right-width: 0;
+    font-size: 1.2rem;
+    position: absolute;
+    right: 0;
+    z-index: 1; }
+    .chatConversation .subMenu > * {
+      padding-bottom: 10px; }
+      .chatConversation .subMenu > *:last-child {
+        padding: 0; }
+  .chatConversation .convoFooter {
+    border-top-style: solid;
+    border-top-width: 1px;
+    z-index: 1; }
+    .chatConversation .convoFooter > div {
+      padding-top: 2.5px;
+      padding-bottom: 2.5px; }
+    .chatConversation .convoFooter textarea {
+      border-width: 0; }
+      .chatConversation .convoFooter textarea::-webkit-scrollbar-thumb {
+        background-color: transparent; }
+      .chatConversation .convoFooter textarea::-webkit-scrollbar-track {
+        background-color: transparent; }
+  .chatConversation .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: white;
+    opacity: 0.7;
+    z-index: 1; }
+  .chatConversation .chatIcon {
+    width: 38px;
+    height: 38px; }
+  .chatConversation .emojiMenuTrigger {
+    border: none;
+    padding: 0;
+    padding-right: 12px;
+    font-size: 1.4rem; }
+  .chatConversation .emojiMenuContainer {
+    border-top-style: solid;
+    border-top-width: 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 266px;
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 98px; }
+    .chatConversation .emojiMenuContainer .emojiMenu .emojiGroup {
+      padding-left: 3px;
+      clear: both;
+      margin-bottom: 5px; }
+      .chatConversation .emojiMenuContainer .emojiMenu .emojiGroup button {
+        float: left;
+        border: 0;
+        padding: 0;
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+        transition: transform 0.1s ease; }
+        .chatConversation .emojiMenuContainer .emojiMenu .emojiGroup button:hover {
+          transform: scale(1.2, 1.2); }
+        .chatConversation .emojiMenuContainer .emojiMenu .emojiGroup button .emoji {
+          margin-right: 11px;
+          margin-bottom: 9px; }
+      .chatConversation .emojiMenuContainer .emojiMenu .emojiGroup:last-child {
+        margin-bottom: 0; }
+
+.chatConversation .emoji, #chatContainer .emoji {
+  width: 16px;
+  height: 16px; }
+
+.testProfilePage {
+  font-size: 18px; }
+  .testProfilePage input, .testProfilePage textarea {
+    display: block;
+    border: 1px solid black;
+    font-size: 16px;
+    margin: 10px 0 25px;
+    width: 300px;
+    padding: 10px;
+    height: 20px; }
+  .testProfilePage textarea {
+    width: 320px;
+    height: 180px; }
+  .testProfilePage label .labelSubText {
+    display: block;
+    font-size: 14px;
+    margin: 6px 0; }
+  .testProfilePage .btnAddSocial {
+    display: block; }
+  .testProfilePage .buttonBar {
+    margin-top: 15px; }
+    .testProfilePage .buttonBar input {
+      width: 100px;
+      display: inline;
+      height: auto; }
+      .testProfilePage .buttonBar input:hover {
+        cursor: pointer;
+        background-color: white; }
+  .testProfilePage .socialAccount {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #CCC;
+    margin: 10px 0; }
+    .testProfilePage .socialAccount input {
+      width: auto;
+      margin-bottom: 15px;
+      display: inline-block; }
+    .testProfilePage .socialAccount label {
+      display: block; }
+    .testProfilePage .socialAccount select {
+      margin-bottom: 10px; }
+
+.loadingModal .modalContent {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  max-height: none;
+  left: 50%; }
+
+.loadingModal.startupLoadingModal .infoContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 55px;
+  color: black !important; }
+  .loadingModal.startupLoadingModal .infoContent .loadingMessage.fadeInAnim {
+    animation: fadeInAnim 1s ease; }
+
+@keyframes fadeInAnim {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+.messageModal .modalContent {
+  width: 600px; }
+
+.messageModal .msgWrap {
+  font-size: 1.4rem; }
+
+.messageModal.dialog .buttonWrap {
+  text-align: center; }
+
+.settings form label {
+  line-height: 2rem; }
+
+.settings .modalContent .tabContent .tabFormWrapper .settingsTabFormWrapperInner {
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  box-sizing: border-box; }
+
+.settings .avatarPreview {
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%; }
+  .settings .avatarPreview .cropit-preview-image-container {
+    border-radius: 50%;
+    background-image: url(../../imgs/defaultAvatar.png);
+    background-position: center;
+    background-size: cover; }
+
+.settings .avatarPreview,
+.settings .headerPreview {
+  width: 120px;
+  height: 120px; }
+  .settings .avatarPreview .cropit-preview-image-container,
+  .settings .headerPreview .cropit-preview-image-container {
+    overflow: hidden;
+    z-index: 1; }
+
+.settings .headerPreview {
+  width: 474px;
+  height: 136px; }
+  .settings .headerPreview .cropit-preview-image-container {
+    background-image: url(../../imgs/defaultHeader.png);
+    background-position: center;
+    background-size: cover; }
+
+.settings .zoomWarning {
+  display: flex;
+  position: absolute;
+  top: 0;
+  font-size: 1rem;
+  text-align: center;
+  align-items: center; }
+
+.settings .cropit-image-zoom-input:disabled {
+  opacity: 0; }
+
+.settings .settingsAddresses .addresses {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+  .settings .settingsAddresses .addresses .addressBox {
+    padding: 15px;
+    padding-bottom: 65px;
+    line-height: 1.3;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 2px;
+    position: relative;
+    flex: 0 0 auto; }
+    .settings .settingsAddresses .addresses .addressBox .btn, .settings .settingsAddresses .addresses .addressBox .btnRadio, .settings .settingsAddresses .addresses .addressBox .btnTxt, .settings .settingsAddresses .addresses .addressBox .iconBtn, .settings .settingsAddresses .addresses .addressBox .iconBtnSm, .settings .settingsAddresses .addresses .addressBox .btnHg {
+      position: absolute;
+      bottom: 15px;
+      left: 15px; }
+    .settings .settingsAddresses .addresses .addressBox .notes {
+      margin-top: 10px;
+      margin-bottom: 0; }
+
+.settings .previewBox {
+  width: 4rem;
+  height: 4rem;
+  border-style: solid;
+  border-width: 1px; }
+
+.editListing form label {
+  line-height: 2.75rem; }
+
+.editListing .modalContent {
+  overflow: hidden;
+  min-height: 0; }
+  .editListing .modalContent .topControls {
+    z-index: 1; }
+  .editListing .modalContent .tile {
+    width: 100px;
+    height: 100px;
+    border: 1px solid;
+    border-color: inherit;
+    border-radius: 2px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    position: relative; }
+    .editListing .modalContent .tile .closeIcon {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 0;
+      left: 0; }
+    .editListing .modalContent .tile .btn, .editListing .modalContent .tile .btnRadio, .editListing .modalContent .tile .btnTxt, .editListing .modalContent .tile .iconBtn, .editListing .modalContent .tile .iconBtnSm, .editListing .modalContent .tile .btnHg {
+      width: 61px;
+      height: 28px;
+      position: absolute;
+      bottom: 10px;
+      padding: 0;
+      line-height: 1;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0); }
+  .editListing .modalContent .tabContent .photoUploadSection h2 {
+    display: inline-block; }
+  .editListing .modalContent .tabContent .photoUploadSection .uploadingLabel {
+    float: right; }
+  .editListing .modalContent .tabContent .photoUploadSection .uploadItems {
+    display: table; }
+    .editListing .modalContent .tabContent .photoUploadSection .uploadItems li {
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      cursor: move; }
+      .editListing .modalContent .tabContent .photoUploadSection .uploadItems li:nth-last-child(-n + 6):nth-child(6n + 1),
+      .editListing .modalContent .tabContent .photoUploadSection .uploadItems li:nth-last-child(-n + 6):nth-child(6n + 1) ~ li {
+        margin-bottom: 0; }
+      .editListing .modalContent .tabContent .photoUploadSection .uploadItems li.addElement {
+        cursor: default; }
+        .editListing .modalContent .tabContent .photoUploadSection .uploadItems li.addElement .imagesIcon {
+          font-size: 50px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          top: 35%; }
+      .editListing .modalContent .tabContent .photoUploadSection .uploadItems li .primaryIndicatorWrap {
+        display: none; }
+      .editListing .modalContent .tabContent .photoUploadSection .uploadItems li:nth-child(2) .primaryIndicatorWrap {
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        right: 0;
+        display: block;
+        text-align: center; }
+        .editListing .modalContent .tabContent .photoUploadSection .uploadItems li:nth-child(2) .primaryIndicatorWrap .phraseBox {
+          display: inline-block; }
+  .editListing .modalContent .tabContent .shippingSection .tile .locationIcon {
+    font-size: 38px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 34%; }
+  .editListing .modalContent .tabContent .shippingSection form label {
+    font-weight: 400; }
+  .editListing .modalContent .tabContent .shippingSection form .servicesWrap .flexRow {
+    padding-left: 0;
+    padding-right: 0; }
+    .editListing .modalContent .tabContent .shippingSection form .servicesWrap .flexRow .btnRemoveService {
+      height: auto;
+      width: 50px; }
+    .editListing .modalContent .tabContent .shippingSection form .servicesWrap .flexRow:first-child {
+      padding-top: 0; }
+  .editListing .modalContent .tabContent .shippingSection form .servicesWrap > .flexRow:first-child .btnRemoveService {
+    display: none; }
+  .editListing .modalContent .tabContent .shippingSection .topLevelShipOptErrs {
+    display: none; }
+  .editListing .modalContent .tabContent .shippingSection .shippingOptionsWrap:empty + .shipOptPlaceholder .topLevelShipOptErrs {
+    display: block; }
+  .editListing .modalContent .tabContent .shippingSection .shippingOptionsWrap .select2TagsWrap .placeholder, .editListing .modalContent .tabContent .shippingSection .shippingOptionsWrap .select2TagsWrapDropDown .placeholder {
+    margin-top: 11px; }
+  .editListing .modalContent .tabContent .shippingSection .shippingOptionsWrap .select2TagsWrap .select2-selection__choice[title*=REGION_], .editListing .modalContent .tabContent .shippingSection .shippingOptionsWrap .select2TagsWrapDropDown .select2-selection__choice[title*=REGION_] {
+    display: none; }
+  .editListing .modalContent .tabContent .couponsSection .couponsContainer {
+    display: none; }
+  .editListing .modalContent .tabContent .couponsSection.expandedCouponView .couponsContainer {
+    display: block; }
+  .editListing .modalContent .tabContent .couponsSection.expandedCouponView .btnAddCoupon {
+    display: none; }
+  .editListing .modalContent .tabContent .couponsSection .coupon {
+    padding-left: 0;
+    padding-right: 0; }
+    .editListing .modalContent .tabContent .couponsSection .coupon .inputSelect input {
+      padding-right: 94px; }
+    .editListing .modalContent .tabContent .couponsSection .coupon .inputSelect .select2-container {
+      width: 93px !important; }
+    .editListing .modalContent .tabContent .couponsSection .coupon .inputSelect::after {
+      right: 94px; }
+    .editListing .modalContent .tabContent .couponsSection .coupon .btnRemoveCoupon {
+      height: auto;
+      width: 50px; }
+
+.listingDetail .modalContent .storeOwnerAvatar {
+  width: 24px;
+  height: 24px;
+  float: left; }
+
+.listingDetail .modalContent .listingContent .mainImage {
+  width: 530px;
+  height: 530px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  cursor: pointer; }
+
+.listingDetail .modalContent .listingContent .buyBox {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  box-sizing: border-box;
+  padding: 20px 40px;
+  margin-bottom: 20px; }
+
+.listingDetail .modalContent .listingContent .tagWrapper .tag {
+  float: left;
+  margin: 0 5px 5px 0;
+  font-size: 1.3rem;
+  padding: 0 10px; }
+
+.listingDetail .modalContent .listingContent .descriptionSection img {
+  max-width: 100%;
+  height: auto; }
+
+.listingDetail .modalContent .listingContent .photoSection {
+  background: #000000;
+  height: 701px; }
+  .listingDetail .modalContent .listingContent .photoSection .photoSelected {
+    height: 100%;
+    cursor: zoom-in; }
+    .listingDetail .modalContent .listingContent .photoSection .photoSelected.unzoomable {
+      cursor: auto; }
+    .listingDetail .modalContent .listingContent .photoSection .photoSelected.open {
+      cursor: zoom-out; }
+      .listingDetail .modalContent .listingContent .photoSection .photoSelected.open .photoSelectedInner {
+        display: none; }
+    .listingDetail .modalContent .listingContent .photoSection .photoSelected .photoSelectedInner {
+      max-width: 100%;
+      max-height: 100%;
+      display: block; }
+  .listingDetail .modalContent .listingContent .photoSection .photoPrev,
+  .listingDetail .modalContent .listingContent .photoSection .photoNext {
+    background-color: rgba(37, 37, 37, 0.7);
+    border: 0;
+    width: 90px;
+    height: 90px;
+    font-size: 70px;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 1s;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    z-index: 2; }
+  .listingDetail .modalContent .listingContent .photoSection .photoPrev {
+    left: 0; }
+    .listingDetail .modalContent .listingContent .photoSection .photoPrev:before {
+      padding-right: 10px; }
+  .listingDetail .modalContent .listingContent .photoSection .photoNext {
+    right: 0; }
+    .listingDetail .modalContent .listingContent .photoSection .photoNext:before {
+      padding-left: 10px; }
+  .listingDetail .modalContent .listingContent .photoSection:hover .photoPrev,
+  .listingDetail .modalContent .listingContent .photoSection:hover .photoNext {
+    opacity: 1; }
+  .listingDetail .modalContent .listingContent .photoSection .cropit-image-zoom-input {
+    position: absolute;
+    bottom: 100px;
+    width: 90%;
+    margin: 0 5%; }
+  .listingDetail .modalContent .listingContent .photoSection .photoStrip {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgba(37, 37, 37, 0.7);
+    overflow-x: auto; }
+    .listingDetail .modalContent .listingContent .photoSection .photoStrip input[type="radio"] {
+      display: none; }
+    .listingDetail .modalContent .listingContent .photoSection .photoStrip label {
+      height: 60px;
+      width: 60px;
+      box-sizing: border-box;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0 0 0 2px transparent, inset 0 0 0 3px rgba(255, 255, 255, 0);
+      transition: box-shadow 0.25s;
+      flex-shrink: 0;
+      cursor: pointer; }
+    .listingDetail .modalContent .listingContent .photoSection .photoStrip input[type="radio"]:checked + label {
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5), inset 0 0 0 3px white; }
+
+.about .brandSmall {
+  width: 50px;
+  height: 50px; }
+
+.about .gemSmall {
+  width: 16px;
+  height: 16px;
+  margin: 1px;
+  background-size: contain;
+  display: block;
+  margin-right: 2px; }
+
+.about .contributorList li {
+  padding-left: 20px;
+  padding-bottom: 5px; }
+
+.about .singleLine {
+  white-space: pre; }
+
+.about .copyNotification {
+  font-weight: bold;
+  font-size: 10px;
+  margin-left: 15px;
+  padding: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s; }
+
+.about .copyNotification.active {
+  opacity: 1;
+  pointer-events: auto; }
+
+.connectionManagement .configurations {
+  position: relative; }
+  .connectionManagement .configurations .configurationContainer {
+    min-height: 500px; }
+  .connectionManagement .configurations .statusBarOuterWrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 115px;
+    height: 58px; }
+    .connectionManagement .configurations .statusBarOuterWrap .statusBarMessage {
+      height: 100%; }
+      .connectionManagement .configurations .statusBarOuterWrap .statusBarMessage .btnClose {
+        position: absolute;
+        right: 6px;
+        top: -4px; }
+        .connectionManagement .configurations .statusBarOuterWrap .statusBarMessage .btnClose span {
+          font-size: 2.8rem; }
+      .connectionManagement .configurations .statusBarOuterWrap .statusBarMessage .connectFailed {
+        border-left-width: 4px;
+        border-left-style: solid; }
+      .connectionManagement .configurations .statusBarOuterWrap .statusBarMessage .connectingMsg {
+        padding-left: 25px; }
+        .connectionManagement .configurations .statusBarOuterWrap .statusBarMessage .connectingMsg .spinner {
+          margin-right: 5px;
+          transform: translateX(-25px); }
+  .connectionManagement .configurations .borderFillIn {
+    position: absolute;
+    right: -115px;
+    top: 58px;
+    width: 150px; }
+  .connectionManagement .configurations .configuration {
+    position: relative;
+    height: 37px; }
+    .connectionManagement .configurations .configuration .btnConnectCancel {
+      width: 140px;
+      padding-left: 0;
+      padding-right: 0; }
+    .connectionManagement .configurations .configuration.failedConnectAttempt {
+      border-left-width: 4px;
+      border-left-style: solid; }
+    .connectionManagement .configurations .configuration .errorBorder {
+      width: 4px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0; }
+    .connectionManagement .configurations .configuration .deleteConfirm {
+      display: block;
+      position: absolute;
+      right: 83px;
+      width: 245px;
+      transform: translateY(7px);
+      z-index: 1; }
+
+.userPage {
+  height: 100%;
+  position: relative; }
+  .userPage .header {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 341px;
+    top: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none; }
+  .userPage .pageContent .pageControls {
+    padding: 268px 0 40px 0; }
+  .userPage .pageContent .informationList .informationHeader {
+    font-size: 1.4rem; }
+  .userPage .pageContent .informationList .listItem > * {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .userPage .pageContent .termsDisplay {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 0; }
+    .userPage .pageContent .termsDisplay.open {
+      display: block; }
+  .userPage .pageContent .userPageFollow {
+    flex-wrap: wrap;
+    width: auto;
+    margin: 0 -7.5px; }
+    .userPage .pageContent .userPageFollow .userShort {
+      width: 33.33333333333333%;
+      flex: 0 0 auto;
+      padding: 0 7.5px 15px 7.5px;
+      box-sizing: border-box; }
+  .userPage .pageContent .userPageStore .userPageSearchBar {
+    margin-bottom: 15px;
+    height: 40px; }
+    .userPage .pageContent .userPageStore .userPageSearchBar .ctrl, .userPage .pageContent .userPageStore .userPageSearchBar .btn, .userPage .pageContent .userPageStore .userPageSearchBar .btnRadio, .userPage .pageContent .userPageStore .userPageSearchBar .btnTxt, .userPage .pageContent .userPageStore .userPageSearchBar .iconBtn, .userPage .pageContent .userPageStore .userPageSearchBar .iconBtnSm, .userPage .pageContent .userPageStore .userPageSearchBar .btnHg,
+    .userPage .pageContent .userPageStore .userPageSearchBar .btn,
+    .userPage .pageContent .userPageStore .userPageSearchBar .btnRadio,
+    .userPage .pageContent .userPageStore .userPageSearchBar .btnTxt,
+    .userPage .pageContent .userPageStore .userPageSearchBar .iconBtn,
+    .userPage .pageContent .userPageStore .userPageSearchBar .iconBtnSm,
+    .userPage .pageContent .userPageStore .userPageSearchBar .btnHg {
+      height: 40px;
+      line-height: 40px; }
+    .userPage .pageContent .userPageStore .userPageSearchBar .btnLayoutFullWidth {
+      display: none; }
+  .userPage .pageContent .userPageStore .storeFilters {
+    flex-basis: 228px;
+    margin-right: 15px; }
+    .userPage .pageContent .userPageStore .storeFilters > * {
+      margin-bottom: 10px; }
+      .userPage .pageContent .userPageStore .storeFilters > *:last-child {
+        margin-bottom: 0; }
+    .userPage .pageContent .userPageStore .storeFilters .categoryFilter {
+      max-height: 250px;
+      overflow: auto; }
+      .userPage .pageContent .userPageStore .storeFilters .categoryFilter .moreCatsWrap .moreCats, .userPage .pageContent .userPageStore .storeFilters .categoryFilter .moreCatsWrap .showLess {
+        display: none; }
+      .userPage .pageContent .userPageStore .storeFilters .categoryFilter .moreCatsWrap.expanded .moreCats, .userPage .pageContent .userPageStore .storeFilters .categoryFilter .moreCatsWrap.expanded .showLess {
+        display: block; }
+      .userPage .pageContent .userPageStore .storeFilters .categoryFilter .moreCatsWrap.expanded .showMore {
+        display: none; }
+  .userPage .pageContent .userPageStore .storeListings {
+    flex-shrink: 1;
+    width: 100%; }
+    .userPage .pageContent .userPageStore .storeListings .listingsHeaderRow .listingsCount {
+      flex-grow: 1; }
+  .userPage .pageContent .userPageStore .listViewIcon {
+    display: none; }
+  .userPage .pageContent .userPageStore.listView .listViewIcon {
+    display: block; }
+  .userPage .pageContent .userPageStore.listView .gridViewIcon {
+    display: none; }
+  .userPage .pageContent .userPageStore.listView .btnLayoutStandard,
+  .userPage .pageContent .userPageStore.listView .btnLayoutFullWidth {
+    pointer-events: none;
+    opacity: 0.4; }
+  .userPage .pageContent .userPageStore .popInMessageHolder {
+    z-index: 2; }
+
+.userShort {
+  font-size: 1.4rem; }
+  .userShort .shortHeader {
+    height: 101px;
+    position: relative;
+    margin-bottom: 9px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; }
+    .userShort .shortHeader .userIcon {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      border-width: 2px;
+      border-style: solid;
+      width: 50px;
+      height: 50px; }
+    .userShort .shortHeader .userControls {
+      position: absolute;
+      bottom: 8px;
+      right: 10px; }
+      .userShort .shortHeader .userControls .iconBtn:not(.active) i {
+        opacity: 0.5; }
+  .userShort .content {
+    padding: 0 12px 12px 12px;
+    height: 112px;
+    box-sizing: border-box;
+    word-wrap: break-word; }
+    .userShort .content .contentTop {
+      height: 86px; }
+      .userShort .content .contentTop .name {
+        flex: 1 0 auto;
+        max-width: 50%; }
+
+/* default for inputs with no color class */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+.trumbowyg div[contenteditable]:focus {
+  border-color: #7f7f7f; }
+
+.clrP {
+  background-color: white; }
+  .clrP input[type="radio"] + label:before {
+    background-color: whitesmoke; }
+  .clrP input[type="radio"]:checked + label:before {
+    box-shadow: inset 0 0 0 3px whitesmoke; }
+
+.clrPG {
+  background-color: rgba(255, 255, 255, 0.8); }
+  .clrPG input[type="radio"] + label:before {
+    background-color: whitesmoke; }
+  .clrPG input[type="radio"]:checked + label:before {
+    box-shadow: inset 0 0 0 3px whitesmoke; }
+
+.clrS {
+  background-color: whitesmoke; }
+  .clrS input[type="radio"] + label:before {
+    background-color: white; }
+  .clrS input[type="radio"]:checked + label:before {
+    box-shadow: inset 0 0 0 3px white; }
+
+input[type=range][class~="clrP"]::-webkit-slider-runnable-track {
+  background-color: whitesmoke;
+  border-color: #dbdbdb; }
+
+input[type=range][class~="clrP"]:focus::-webkit-slider-runnable-track {
+  background-color: whitesmoke; }
+
+input[type=range][class~="clrP"]::-webkit-slider-thumb {
+  background-color: white; }
+
+input[type=range][class~="clrS"]::-webkit-slider-runnable-track {
+  background-color: white;
+  border-color: #dbdbdb; }
+
+input[type=range][class~="clrS"]:focus::-webkit-slider-runnable-track {
+  background-color: white; }
+
+input[type=range][class~="clrS"]::-webkit-slider-thumb {
+  background-color: whitesmoke; }
+
+.clrErr {
+  background-color: red; }
+
+.clrT {
+  /* generates the text color rules */
+  /* if no second color is passed, set everything to the first color */
+  color: #262626; }
+  .clrT a {
+    color: #949494; }
+  .clrT .btn, .clrT .btnRadio, .clrT .btnTxt, .clrT .iconBtn, .clrT .iconBtnSm, .clrT .btnHg, .clrT .listItem, .clrT.btn, .clrT.btnRadio, .clrT.btnTxt, .clrT.iconBtn, .clrT.iconBtnSm, .clrT.btnHg, .clrT.listItem {
+    /* btnTxt and iconBtn are included automatically because they extend .btn */
+    color: #262626; }
+  a.clrT {
+    color: #262626; }
+  .clrT input[type="radio"]:checked + label:before {
+    background: #262626; }
+  .clrT input[type="checkbox"] + label:before {
+    color: #949494; }
+  .clrT input[type="checkbox"]:checked + label:before {
+    color: #262626; }
+  .clrT .tab.active {
+    color: #262626; }
+    .clrT .tab.active::after {
+      color: #262626; }
+  .clrT .spinner path,
+  .clrT .spinner rect {
+    fill: #262626; }
+  .clrT.spinner path,
+  .clrT.spinner rect {
+    fill: #262626; }
+
+.clrT2 {
+  /* generates the text color rules */
+  /* if no second color is passed, set everything to the first color */
+  color: #949494; }
+  .clrT2 a {
+    color: #bcbcbc; }
+  .clrT2 .btn, .clrT2 .btnRadio, .clrT2 .btnTxt, .clrT2 .iconBtn, .clrT2 .iconBtnSm, .clrT2 .btnHg, .clrT2 .listItem, .clrT2.btn, .clrT2.btnRadio, .clrT2.btnTxt, .clrT2.iconBtn, .clrT2.iconBtnSm, .clrT2.btnHg, .clrT2.listItem {
+    /* btnTxt and iconBtn are included automatically because they extend .btn */
+    color: #949494; }
+  a.clrT2 {
+    color: #949494; }
+  .clrT2 input[type="radio"]:checked + label:before {
+    background: #949494; }
+  .clrT2 input[type="checkbox"] + label:before {
+    color: #bcbcbc; }
+  .clrT2 input[type="checkbox"]:checked + label:before {
+    color: #949494; }
+  .clrT2 .tab.active {
+    color: #262626; }
+    .clrT2 .tab.active::after {
+      color: #262626; }
+  .clrT2 .spinner path,
+  .clrT2 .spinner rect {
+    fill: #949494; }
+  .clrT2.spinner path,
+  .clrT2.spinner rect {
+    fill: #949494; }
+
+.clrT3 {
+  /* generates the text color rules */
+  /* if no second color is passed, set everything to the first color */
+  color: #bcbcbc; }
+  .clrT3 a {
+    color: #bcbcbc; }
+  .clrT3 .btn, .clrT3 .btnRadio, .clrT3 .btnTxt, .clrT3 .iconBtn, .clrT3 .iconBtnSm, .clrT3 .btnHg, .clrT3 .listItem, .clrT3.btn, .clrT3.btnRadio, .clrT3.btnTxt, .clrT3.iconBtn, .clrT3.iconBtnSm, .clrT3.btnHg, .clrT3.listItem {
+    /* btnTxt and iconBtn are included automatically because they extend .btn */
+    color: #bcbcbc; }
+  a.clrT3 {
+    color: #bcbcbc; }
+  .clrT3 input[type="radio"]:checked + label:before {
+    background: #bcbcbc; }
+  .clrT3 input[type="checkbox"] + label:before {
+    color: #bcbcbc; }
+  .clrT3 input[type="checkbox"]:checked + label:before {
+    color: #bcbcbc; }
+  .clrT3 .tab.active {
+    color: #949494; }
+    .clrT3 .tab.active::after {
+      color: #949494; }
+  .clrT3 .spinner path,
+  .clrT3 .spinner rect {
+    fill: #bcbcbc; }
+  .clrT3.spinner path,
+  .clrT3.spinner rect {
+    fill: #bcbcbc; }
+
+.clrT4 {
+  /* generates the text color rules */
+  /* if no second color is passed, set everything to the first color */
+  color: #cbcbcb; }
+  .clrT4 a {
+    color: #cbcbcb; }
+  .clrT4 .btn, .clrT4 .btnRadio, .clrT4 .btnTxt, .clrT4 .iconBtn, .clrT4 .iconBtnSm, .clrT4 .btnHg, .clrT4 .listItem, .clrT4.btn, .clrT4.btnRadio, .clrT4.btnTxt, .clrT4.iconBtn, .clrT4.iconBtnSm, .clrT4.btnHg, .clrT4.listItem {
+    /* btnTxt and iconBtn are included automatically because they extend .btn */
+    color: #cbcbcb; }
+  a.clrT4 {
+    color: #cbcbcb; }
+  .clrT4 input[type="radio"]:checked + label:before {
+    background: #cbcbcb; }
+  .clrT4 input[type="checkbox"] + label:before {
+    color: #cbcbcb; }
+  .clrT4 input[type="checkbox"]:checked + label:before {
+    color: #cbcbcb; }
+  .clrT4 .tab.active {
+    color: #bcbcbc; }
+    .clrT4 .tab.active::after {
+      color: #bcbcbc; }
+  .clrT4 .spinner path,
+  .clrT4 .spinner rect {
+    fill: #cbcbcb; }
+  .clrT4.spinner path,
+  .clrT4.spinner rect {
+    fill: #cbcbcb; }
+
+.clrTEm {
+  /* generates the text color rules */
+  /* if no second color is passed, set everything to the first color */
+  color: #2bae23; }
+  .clrTEm a {
+    color: #61dd5a; }
+  .clrTEm .btn, .clrTEm .btnRadio, .clrTEm .btnTxt, .clrTEm .iconBtn, .clrTEm .iconBtnSm, .clrTEm .btnHg, .clrTEm .listItem, .clrTEm.btn, .clrTEm.btnRadio, .clrTEm.btnTxt, .clrTEm.iconBtn, .clrTEm.iconBtnSm, .clrTEm.btnHg, .clrTEm.listItem {
+    /* btnTxt and iconBtn are included automatically because they extend .btn */
+    color: #2bae23; }
+  a.clrTEm {
+    color: #2bae23; }
+  .clrTEm input[type="radio"]:checked + label:before {
+    background: #2bae23; }
+  .clrTEm input[type="checkbox"] + label:before {
+    color: #61dd5a; }
+  .clrTEm input[type="checkbox"]:checked + label:before {
+    color: #2bae23; }
+  .clrTEm .tab.active {
+    color: #61dd5a; }
+    .clrTEm .tab.active::after {
+      color: #61dd5a; }
+  .clrTEm .spinner path,
+  .clrTEm .spinner rect {
+    fill: #2bae23; }
+  .clrTEm.spinner path,
+  .clrTEm.spinner rect {
+    fill: #2bae23; }
+
+.clrTAtt {
+  /* generates the text color rules */
+  /* if no second color is passed, set everything to the first color */
+  color: #2bae23; }
+  .clrTAtt a {
+    color: #61dd5a; }
+  .clrTAtt .btn, .clrTAtt .btnRadio, .clrTAtt .btnTxt, .clrTAtt .iconBtn, .clrTAtt .iconBtnSm, .clrTAtt .btnHg, .clrTAtt .listItem, .clrTAtt.btn, .clrTAtt.btnRadio, .clrTAtt.btnTxt, .clrTAtt.iconBtn, .clrTAtt.iconBtnSm, .clrTAtt.btnHg, .clrTAtt.listItem {
+    /* btnTxt and iconBtn are included automatically because they extend .btn */
+    color: #2bae23; }
+  a.clrTAtt {
+    color: #2bae23; }
+  .clrTAtt input[type="radio"]:checked + label:before {
+    background: #2bae23; }
+  .clrTAtt input[type="checkbox"] + label:before {
+    color: #61dd5a; }
+  .clrTAtt input[type="checkbox"]:checked + label:before {
+    color: #2bae23; }
+  .clrTAtt .tab.active {
+    color: #61dd5a; }
+    .clrTAtt .tab.active::after {
+      color: #61dd5a; }
+  .clrTAtt .spinner path,
+  .clrTAtt .spinner rect {
+    fill: #2bae23; }
+  .clrTAtt.spinner path,
+  .clrTAtt.spinner rect {
+    fill: #2bae23; }
+
+.clrTErr {
+  /* generates the text color rules */
+  /* if no second color is passed, set everything to the first color */
+  color: red; }
+  .clrTErr a {
+    color: red; }
+  .clrTErr .btn, .clrTErr .btnRadio, .clrTErr .btnTxt, .clrTErr .iconBtn, .clrTErr .iconBtnSm, .clrTErr .btnHg, .clrTErr .listItem, .clrTErr.btn, .clrTErr.btnRadio, .clrTErr.btnTxt, .clrTErr.iconBtn, .clrTErr.iconBtnSm, .clrTErr.btnHg, .clrTErr.listItem {
+    /* btnTxt and iconBtn are included automatically because they extend .btn */
+    color: red; }
+  a.clrTErr {
+    color: red; }
+  .clrTErr input[type="radio"]:checked + label:before {
+    background: red; }
+  .clrTErr input[type="checkbox"] + label:before {
+    color: red; }
+  .clrTErr input[type="checkbox"]:checked + label:before {
+    color: red; }
+  .clrTErr .tab.active {
+    color: red; }
+    .clrTErr .tab.active::after {
+      color: red; }
+  .clrTErr .spinner path,
+  .clrTErr .spinner rect {
+    fill: red; }
+  .clrTErr.spinner path,
+  .clrTErr.spinner rect {
+    fill: red; }
+
+.clrTOnEmph {
+  /* generates the text color rules */
+  /* if no second color is passed, set everything to the first color */
+  color: white; }
+  .clrTOnEmph a {
+    color: white; }
+  .clrTOnEmph .btn, .clrTOnEmph .btnRadio, .clrTOnEmph .btnTxt, .clrTOnEmph .iconBtn, .clrTOnEmph .iconBtnSm, .clrTOnEmph .btnHg, .clrTOnEmph .listItem, .clrTOnEmph.btn, .clrTOnEmph.btnRadio, .clrTOnEmph.btnTxt, .clrTOnEmph.iconBtn, .clrTOnEmph.iconBtnSm, .clrTOnEmph.btnHg, .clrTOnEmph.listItem {
+    /* btnTxt and iconBtn are included automatically because they extend .btn */
+    color: white; }
+  a.clrTOnEmph {
+    color: white; }
+  .clrTOnEmph input[type="radio"]:checked + label:before {
+    background: white; }
+  .clrTOnEmph input[type="checkbox"] + label:before {
+    color: white; }
+  .clrTOnEmph input[type="checkbox"]:checked + label:before {
+    color: white; }
+  .clrTOnEmph .tab.active {
+    color: white; }
+    .clrTOnEmph .tab.active::after {
+      color: white; }
+  .clrTOnEmph .spinner path,
+  .clrTOnEmph .spinner rect {
+    fill: white; }
+  .clrTOnEmph.spinner path,
+  .clrTOnEmph.spinner rect {
+    fill: white; }
+
+.clrTEmph1 {
+  /* generates the text color rules */
+  /* if no second color is passed, set everything to the first color */
+  color: #2bae23; }
+  .clrTEmph1 a {
+    color: #2bae23; }
+  .clrTEmph1 .btn, .clrTEmph1 .btnRadio, .clrTEmph1 .btnTxt, .clrTEmph1 .iconBtn, .clrTEmph1 .iconBtnSm, .clrTEmph1 .btnHg, .clrTEmph1 .listItem, .clrTEmph1.btn, .clrTEmph1.btnRadio, .clrTEmph1.btnTxt, .clrTEmph1.iconBtn, .clrTEmph1.iconBtnSm, .clrTEmph1.btnHg, .clrTEmph1.listItem {
+    /* btnTxt and iconBtn are included automatically because they extend .btn */
+    color: #2bae23; }
+  a.clrTEmph1 {
+    color: #2bae23; }
+  .clrTEmph1 input[type="radio"]:checked + label:before {
+    background: #2bae23; }
+  .clrTEmph1 input[type="checkbox"] + label:before {
+    color: #2bae23; }
+  .clrTEmph1 input[type="checkbox"]:checked + label:before {
+    color: #2bae23; }
+  .clrTEmph1 .tab.active {
+    color: #2bae23; }
+    .clrTEmph1 .tab.active::after {
+      color: #2bae23; }
+  .clrTEmph1 .spinner path,
+  .clrTEmph1 .spinner rect {
+    fill: #2bae23; }
+  .clrTEmph1.spinner path,
+  .clrTEmph1.spinner rect {
+    fill: #2bae23; }
+
+.clrTEmph2 {
+  /* generates the text color rules */
+  /* if no second color is passed, set everything to the first color */
+  color: #61dd5a; }
+  .clrTEmph2 a {
+    color: #61dd5a; }
+  .clrTEmph2 .btn, .clrTEmph2 .btnRadio, .clrTEmph2 .btnTxt, .clrTEmph2 .iconBtn, .clrTEmph2 .iconBtnSm, .clrTEmph2 .btnHg, .clrTEmph2 .listItem, .clrTEmph2.btn, .clrTEmph2.btnRadio, .clrTEmph2.btnTxt, .clrTEmph2.iconBtn, .clrTEmph2.iconBtnSm, .clrTEmph2.btnHg, .clrTEmph2.listItem {
+    /* btnTxt and iconBtn are included automatically because they extend .btn */
+    color: #61dd5a; }
+  a.clrTEmph2 {
+    color: #61dd5a; }
+  .clrTEmph2 input[type="radio"]:checked + label:before {
+    background: #61dd5a; }
+  .clrTEmph2 input[type="checkbox"] + label:before {
+    color: #61dd5a; }
+  .clrTEmph2 input[type="checkbox"]:checked + label:before {
+    color: #61dd5a; }
+  .clrTEmph2 .tab.active {
+    color: #61dd5a; }
+    .clrTEmph2 .tab.active::after {
+      color: #61dd5a; }
+  .clrTEmph2 .spinner path,
+  .clrTEmph2 .spinner rect {
+    fill: #61dd5a; }
+  .clrTEmph2.spinner path,
+  .clrTEmph2.spinner rect {
+    fill: #61dd5a; }
+
+.clrBr {
+  /* generates the border color rules */
+  border-color: #dbdbdb; }
+  .clrBr:hover, .clrBr:focus {
+    border-color: #dbdbdb; }
+  .clrBr input:focus,
+  .clrBr select:focus,
+  .clrBr textarea:focus,
+  .clrBr button:focus,
+  .clrBr .trumbowyg div[contenteditable]:focus {
+    border-color: #7f7f7f; }
+  .clrBr hr {
+    border-color: #dbdbdb; }
+  .clrBr.trumbowyg {
+    border-width: 0; }
+    .clrBr.trumbowyg .trumbowyg-button-pane {
+      border: 1px solid #dbdbdb;
+      border-bottom: 0; }
+      .clrBr.trumbowyg .trumbowyg-button-pane .trumbowyg-button-group::before {
+        background-color: #dbdbdb; }
+  .clrBr .btn:hover, .clrBr .btnRadio:hover, .clrBr .btnTxt:hover, .clrBr .iconBtn:hover, .clrBr .iconBtnSm:hover, .clrBr .btnHg:hover,
+  .clrBr .btn:focus,
+  .clrBr .btnRadio:focus,
+  .clrBr .btnTxt:focus,
+  .clrBr .iconBtn:focus,
+  .clrBr .iconBtnSm:focus,
+  .clrBr .btnHg:focus, .clrBr.btn:hover, .clrBr.btnRadio:hover, .clrBr.btnTxt:hover, .clrBr.iconBtn:hover, .clrBr.iconBtnSm:hover, .clrBr.btnHg:hover, .clrBr.btn:focus, .clrBr.btnRadio:focus, .clrBr.btnTxt:focus, .clrBr.iconBtn:focus, .clrBr.iconBtnSm:focus, .clrBr.btnHg:focus,
+  .clrBr .clrHover:hover,
+  .clrBr .clrHover:focus, .clrBr.clrHover:hover, .clrBr.clrHover:focus {
+    border-color: #7f7f7f; }
+    .disabled .clrBr .btn:hover, .disabled .clrBr .btnRadio:hover, .disabled .clrBr .btnTxt:hover, .disabled .clrBr .iconBtn:hover, .disabled .clrBr .iconBtnSm:hover, .disabled .clrBr .btnHg:hover, .clrBr .btn:hover.disabled, .clrBr .btnRadio:hover.disabled, .clrBr .btnTxt:hover.disabled, .clrBr .iconBtn:hover.disabled, .clrBr .iconBtnSm:hover.disabled, .clrBr .btnHg:hover.disabled, .clrBr .btn:hover:disabled, .clrBr .btnRadio:hover:disabled, .clrBr .btnTxt:hover:disabled, .clrBr .iconBtn:hover:disabled, .clrBr .iconBtnSm:hover:disabled, .clrBr .btnHg:hover:disabled, .disabled
+    .clrBr .btn:focus, .disabled
+    .clrBr .btnRadio:focus, .disabled
+    .clrBr .btnTxt:focus, .disabled
+    .clrBr .iconBtn:focus, .disabled
+    .clrBr .iconBtnSm:focus, .disabled
+    .clrBr .btnHg:focus,
+    .clrBr .btn:focus.disabled,
+    .clrBr .btnRadio:focus.disabled,
+    .clrBr .btnTxt:focus.disabled,
+    .clrBr .iconBtn:focus.disabled,
+    .clrBr .iconBtnSm:focus.disabled,
+    .clrBr .btnHg:focus.disabled,
+    .clrBr .btn:focus:disabled,
+    .clrBr .btnRadio:focus:disabled,
+    .clrBr .btnTxt:focus:disabled,
+    .clrBr .iconBtn:focus:disabled,
+    .clrBr .iconBtnSm:focus:disabled,
+    .clrBr .btnHg:focus:disabled, .disabled .clrBr.btn:hover, .disabled .clrBr.btnRadio:hover, .disabled .clrBr.btnTxt:hover, .disabled .clrBr.iconBtn:hover, .disabled .clrBr.iconBtnSm:hover, .disabled .clrBr.btnHg:hover, .clrBr.btn:hover.disabled, .clrBr.btnRadio:hover.disabled, .clrBr.btnTxt:hover.disabled, .clrBr.iconBtn:hover.disabled, .clrBr.iconBtnSm:hover.disabled, .clrBr.btnHg:hover.disabled, .clrBr.btn:hover:disabled, .clrBr.btnRadio:hover:disabled, .clrBr.btnTxt:hover:disabled, .clrBr.iconBtn:hover:disabled, .clrBr.iconBtnSm:hover:disabled, .clrBr.btnHg:hover:disabled, .disabled .clrBr.btn:focus, .disabled .clrBr.btnRadio:focus, .disabled .clrBr.btnTxt:focus, .disabled .clrBr.iconBtn:focus, .disabled .clrBr.iconBtnSm:focus, .disabled .clrBr.btnHg:focus, .clrBr.btn:focus.disabled, .clrBr.btnRadio:focus.disabled, .clrBr.btnTxt:focus.disabled, .clrBr.iconBtn:focus.disabled, .clrBr.iconBtnSm:focus.disabled, .clrBr.btnHg:focus.disabled, .clrBr.btn:focus:disabled, .clrBr.btnRadio:focus:disabled, .clrBr.btnTxt:focus:disabled, .clrBr.iconBtn:focus:disabled, .clrBr.iconBtnSm:focus:disabled, .clrBr.btnHg:focus:disabled, .disabled
+    .clrBr .clrHover:hover,
+    .clrBr .clrHover:hover.disabled,
+    .clrBr .clrHover:hover:disabled, .disabled
+    .clrBr .clrHover:focus,
+    .clrBr .clrHover:focus.disabled,
+    .clrBr .clrHover:focus:disabled, .disabled .clrBr.clrHover:hover, .clrBr.clrHover:hover.disabled, .clrBr.clrHover:hover:disabled, .disabled .clrBr.clrHover:focus, .clrBr.clrHover:focus.disabled, .clrBr.clrHover:focus:disabled {
+      border-color: #dbdbdb; }
+
+.clrBr2 {
+  /* generates the border color rules */
+  border-color: white; }
+  .clrBr2:hover, .clrBr2:focus {
+    border-color: white; }
+  .clrBr2 input:focus,
+  .clrBr2 select:focus,
+  .clrBr2 textarea:focus,
+  .clrBr2 button:focus,
+  .clrBr2 .trumbowyg div[contenteditable]:focus {
+    border-color: #7f7f7f; }
+  .clrBr2 hr {
+    border-color: white; }
+  .clrBr2.trumbowyg {
+    border-width: 0; }
+    .clrBr2.trumbowyg .trumbowyg-button-pane {
+      border: 1px solid white;
+      border-bottom: 0; }
+      .clrBr2.trumbowyg .trumbowyg-button-pane .trumbowyg-button-group::before {
+        background-color: white; }
+  .clrBr2 .btn:hover, .clrBr2 .btnRadio:hover, .clrBr2 .btnTxt:hover, .clrBr2 .iconBtn:hover, .clrBr2 .iconBtnSm:hover, .clrBr2 .btnHg:hover,
+  .clrBr2 .btn:focus,
+  .clrBr2 .btnRadio:focus,
+  .clrBr2 .btnTxt:focus,
+  .clrBr2 .iconBtn:focus,
+  .clrBr2 .iconBtnSm:focus,
+  .clrBr2 .btnHg:focus, .clrBr2.btn:hover, .clrBr2.btnRadio:hover, .clrBr2.btnTxt:hover, .clrBr2.iconBtn:hover, .clrBr2.iconBtnSm:hover, .clrBr2.btnHg:hover, .clrBr2.btn:focus, .clrBr2.btnRadio:focus, .clrBr2.btnTxt:focus, .clrBr2.iconBtn:focus, .clrBr2.iconBtnSm:focus, .clrBr2.btnHg:focus,
+  .clrBr2 .clrHover:hover,
+  .clrBr2 .clrHover:focus, .clrBr2.clrHover:hover, .clrBr2.clrHover:focus {
+    border-color: #7f7f7f; }
+    .disabled .clrBr2 .btn:hover, .disabled .clrBr2 .btnRadio:hover, .disabled .clrBr2 .btnTxt:hover, .disabled .clrBr2 .iconBtn:hover, .disabled .clrBr2 .iconBtnSm:hover, .disabled .clrBr2 .btnHg:hover, .clrBr2 .btn:hover.disabled, .clrBr2 .btnRadio:hover.disabled, .clrBr2 .btnTxt:hover.disabled, .clrBr2 .iconBtn:hover.disabled, .clrBr2 .iconBtnSm:hover.disabled, .clrBr2 .btnHg:hover.disabled, .clrBr2 .btn:hover:disabled, .clrBr2 .btnRadio:hover:disabled, .clrBr2 .btnTxt:hover:disabled, .clrBr2 .iconBtn:hover:disabled, .clrBr2 .iconBtnSm:hover:disabled, .clrBr2 .btnHg:hover:disabled, .disabled
+    .clrBr2 .btn:focus, .disabled
+    .clrBr2 .btnRadio:focus, .disabled
+    .clrBr2 .btnTxt:focus, .disabled
+    .clrBr2 .iconBtn:focus, .disabled
+    .clrBr2 .iconBtnSm:focus, .disabled
+    .clrBr2 .btnHg:focus,
+    .clrBr2 .btn:focus.disabled,
+    .clrBr2 .btnRadio:focus.disabled,
+    .clrBr2 .btnTxt:focus.disabled,
+    .clrBr2 .iconBtn:focus.disabled,
+    .clrBr2 .iconBtnSm:focus.disabled,
+    .clrBr2 .btnHg:focus.disabled,
+    .clrBr2 .btn:focus:disabled,
+    .clrBr2 .btnRadio:focus:disabled,
+    .clrBr2 .btnTxt:focus:disabled,
+    .clrBr2 .iconBtn:focus:disabled,
+    .clrBr2 .iconBtnSm:focus:disabled,
+    .clrBr2 .btnHg:focus:disabled, .disabled .clrBr2.btn:hover, .disabled .clrBr2.btnRadio:hover, .disabled .clrBr2.btnTxt:hover, .disabled .clrBr2.iconBtn:hover, .disabled .clrBr2.iconBtnSm:hover, .disabled .clrBr2.btnHg:hover, .clrBr2.btn:hover.disabled, .clrBr2.btnRadio:hover.disabled, .clrBr2.btnTxt:hover.disabled, .clrBr2.iconBtn:hover.disabled, .clrBr2.iconBtnSm:hover.disabled, .clrBr2.btnHg:hover.disabled, .clrBr2.btn:hover:disabled, .clrBr2.btnRadio:hover:disabled, .clrBr2.btnTxt:hover:disabled, .clrBr2.iconBtn:hover:disabled, .clrBr2.iconBtnSm:hover:disabled, .clrBr2.btnHg:hover:disabled, .disabled .clrBr2.btn:focus, .disabled .clrBr2.btnRadio:focus, .disabled .clrBr2.btnTxt:focus, .disabled .clrBr2.iconBtn:focus, .disabled .clrBr2.iconBtnSm:focus, .disabled .clrBr2.btnHg:focus, .clrBr2.btn:focus.disabled, .clrBr2.btnRadio:focus.disabled, .clrBr2.btnTxt:focus.disabled, .clrBr2.iconBtn:focus.disabled, .clrBr2.iconBtnSm:focus.disabled, .clrBr2.btnHg:focus.disabled, .clrBr2.btn:focus:disabled, .clrBr2.btnRadio:focus:disabled, .clrBr2.btnTxt:focus:disabled, .clrBr2.iconBtn:focus:disabled, .clrBr2.iconBtnSm:focus:disabled, .clrBr2.btnHg:focus:disabled, .disabled
+    .clrBr2 .clrHover:hover,
+    .clrBr2 .clrHover:hover.disabled,
+    .clrBr2 .clrHover:hover:disabled, .disabled
+    .clrBr2 .clrHover:focus,
+    .clrBr2 .clrHover:focus.disabled,
+    .clrBr2 .clrHover:focus:disabled, .disabled .clrBr2.clrHover:hover, .clrBr2.clrHover:hover.disabled, .clrBr2.clrHover:hover:disabled, .disabled .clrBr2.clrHover:focus, .clrBr2.clrHover:focus.disabled, .clrBr2.clrHover:focus:disabled {
+      border-color: white; }
+
+.clrBr3 {
+  /* generates the border color rules */
+  border-color: #7f7f7f; }
+  .clrBr3:hover, .clrBr3:focus {
+    border-color: #7f7f7f; }
+  .clrBr3 input:focus,
+  .clrBr3 select:focus,
+  .clrBr3 textarea:focus,
+  .clrBr3 button:focus,
+  .clrBr3 .trumbowyg div[contenteditable]:focus {
+    border-color: #d8d8d8; }
+  .clrBr3 hr {
+    border-color: #7f7f7f; }
+  .clrBr3.trumbowyg {
+    border-width: 0; }
+    .clrBr3.trumbowyg .trumbowyg-button-pane {
+      border: 1px solid #7f7f7f;
+      border-bottom: 0; }
+      .clrBr3.trumbowyg .trumbowyg-button-pane .trumbowyg-button-group::before {
+        background-color: #7f7f7f; }
+  .clrBr3 .btn:hover, .clrBr3 .btnRadio:hover, .clrBr3 .btnTxt:hover, .clrBr3 .iconBtn:hover, .clrBr3 .iconBtnSm:hover, .clrBr3 .btnHg:hover,
+  .clrBr3 .btn:focus,
+  .clrBr3 .btnRadio:focus,
+  .clrBr3 .btnTxt:focus,
+  .clrBr3 .iconBtn:focus,
+  .clrBr3 .iconBtnSm:focus,
+  .clrBr3 .btnHg:focus, .clrBr3.btn:hover, .clrBr3.btnRadio:hover, .clrBr3.btnTxt:hover, .clrBr3.iconBtn:hover, .clrBr3.iconBtnSm:hover, .clrBr3.btnHg:hover, .clrBr3.btn:focus, .clrBr3.btnRadio:focus, .clrBr3.btnTxt:focus, .clrBr3.iconBtn:focus, .clrBr3.iconBtnSm:focus, .clrBr3.btnHg:focus,
+  .clrBr3 .clrHover:hover,
+  .clrBr3 .clrHover:focus, .clrBr3.clrHover:hover, .clrBr3.clrHover:focus {
+    border-color: #d8d8d8; }
+    .disabled .clrBr3 .btn:hover, .disabled .clrBr3 .btnRadio:hover, .disabled .clrBr3 .btnTxt:hover, .disabled .clrBr3 .iconBtn:hover, .disabled .clrBr3 .iconBtnSm:hover, .disabled .clrBr3 .btnHg:hover, .clrBr3 .btn:hover.disabled, .clrBr3 .btnRadio:hover.disabled, .clrBr3 .btnTxt:hover.disabled, .clrBr3 .iconBtn:hover.disabled, .clrBr3 .iconBtnSm:hover.disabled, .clrBr3 .btnHg:hover.disabled, .clrBr3 .btn:hover:disabled, .clrBr3 .btnRadio:hover:disabled, .clrBr3 .btnTxt:hover:disabled, .clrBr3 .iconBtn:hover:disabled, .clrBr3 .iconBtnSm:hover:disabled, .clrBr3 .btnHg:hover:disabled, .disabled
+    .clrBr3 .btn:focus, .disabled
+    .clrBr3 .btnRadio:focus, .disabled
+    .clrBr3 .btnTxt:focus, .disabled
+    .clrBr3 .iconBtn:focus, .disabled
+    .clrBr3 .iconBtnSm:focus, .disabled
+    .clrBr3 .btnHg:focus,
+    .clrBr3 .btn:focus.disabled,
+    .clrBr3 .btnRadio:focus.disabled,
+    .clrBr3 .btnTxt:focus.disabled,
+    .clrBr3 .iconBtn:focus.disabled,
+    .clrBr3 .iconBtnSm:focus.disabled,
+    .clrBr3 .btnHg:focus.disabled,
+    .clrBr3 .btn:focus:disabled,
+    .clrBr3 .btnRadio:focus:disabled,
+    .clrBr3 .btnTxt:focus:disabled,
+    .clrBr3 .iconBtn:focus:disabled,
+    .clrBr3 .iconBtnSm:focus:disabled,
+    .clrBr3 .btnHg:focus:disabled, .disabled .clrBr3.btn:hover, .disabled .clrBr3.btnRadio:hover, .disabled .clrBr3.btnTxt:hover, .disabled .clrBr3.iconBtn:hover, .disabled .clrBr3.iconBtnSm:hover, .disabled .clrBr3.btnHg:hover, .clrBr3.btn:hover.disabled, .clrBr3.btnRadio:hover.disabled, .clrBr3.btnTxt:hover.disabled, .clrBr3.iconBtn:hover.disabled, .clrBr3.iconBtnSm:hover.disabled, .clrBr3.btnHg:hover.disabled, .clrBr3.btn:hover:disabled, .clrBr3.btnRadio:hover:disabled, .clrBr3.btnTxt:hover:disabled, .clrBr3.iconBtn:hover:disabled, .clrBr3.iconBtnSm:hover:disabled, .clrBr3.btnHg:hover:disabled, .disabled .clrBr3.btn:focus, .disabled .clrBr3.btnRadio:focus, .disabled .clrBr3.btnTxt:focus, .disabled .clrBr3.iconBtn:focus, .disabled .clrBr3.iconBtnSm:focus, .disabled .clrBr3.btnHg:focus, .clrBr3.btn:focus.disabled, .clrBr3.btnRadio:focus.disabled, .clrBr3.btnTxt:focus.disabled, .clrBr3.iconBtn:focus.disabled, .clrBr3.iconBtnSm:focus.disabled, .clrBr3.btnHg:focus.disabled, .clrBr3.btn:focus:disabled, .clrBr3.btnRadio:focus:disabled, .clrBr3.btnTxt:focus:disabled, .clrBr3.iconBtn:focus:disabled, .clrBr3.iconBtnSm:focus:disabled, .clrBr3.btnHg:focus:disabled, .disabled
+    .clrBr3 .clrHover:hover,
+    .clrBr3 .clrHover:hover.disabled,
+    .clrBr3 .clrHover:hover:disabled, .disabled
+    .clrBr3 .clrHover:focus,
+    .clrBr3 .clrHover:focus.disabled,
+    .clrBr3 .clrHover:focus:disabled, .disabled .clrBr3.clrHover:hover, .clrBr3.clrHover:hover.disabled, .clrBr3.clrHover:hover:disabled, .disabled .clrBr3.clrHover:focus, .clrBr3.clrHover:focus.disabled, .clrBr3.clrHover:focus:disabled {
+      border-color: #7f7f7f; }
+
+.clrBr4 {
+  /* generates the border color rules */
+  border-color: #d8d8d8; }
+  .clrBr4:hover, .clrBr4:focus {
+    border-color: #d8d8d8; }
+  .clrBr4 input:focus,
+  .clrBr4 select:focus,
+  .clrBr4 textarea:focus,
+  .clrBr4 button:focus,
+  .clrBr4 .trumbowyg div[contenteditable]:focus {
+    border-color: white; }
+  .clrBr4 hr {
+    border-color: #d8d8d8; }
+  .clrBr4.trumbowyg {
+    border-width: 0; }
+    .clrBr4.trumbowyg .trumbowyg-button-pane {
+      border: 1px solid #d8d8d8;
+      border-bottom: 0; }
+      .clrBr4.trumbowyg .trumbowyg-button-pane .trumbowyg-button-group::before {
+        background-color: #d8d8d8; }
+  .clrBr4 .btn:hover, .clrBr4 .btnRadio:hover, .clrBr4 .btnTxt:hover, .clrBr4 .iconBtn:hover, .clrBr4 .iconBtnSm:hover, .clrBr4 .btnHg:hover,
+  .clrBr4 .btn:focus,
+  .clrBr4 .btnRadio:focus,
+  .clrBr4 .btnTxt:focus,
+  .clrBr4 .iconBtn:focus,
+  .clrBr4 .iconBtnSm:focus,
+  .clrBr4 .btnHg:focus, .clrBr4.btn:hover, .clrBr4.btnRadio:hover, .clrBr4.btnTxt:hover, .clrBr4.iconBtn:hover, .clrBr4.iconBtnSm:hover, .clrBr4.btnHg:hover, .clrBr4.btn:focus, .clrBr4.btnRadio:focus, .clrBr4.btnTxt:focus, .clrBr4.iconBtn:focus, .clrBr4.iconBtnSm:focus, .clrBr4.btnHg:focus,
+  .clrBr4 .clrHover:hover,
+  .clrBr4 .clrHover:focus, .clrBr4.clrHover:hover, .clrBr4.clrHover:focus {
+    border-color: white; }
+    .disabled .clrBr4 .btn:hover, .disabled .clrBr4 .btnRadio:hover, .disabled .clrBr4 .btnTxt:hover, .disabled .clrBr4 .iconBtn:hover, .disabled .clrBr4 .iconBtnSm:hover, .disabled .clrBr4 .btnHg:hover, .clrBr4 .btn:hover.disabled, .clrBr4 .btnRadio:hover.disabled, .clrBr4 .btnTxt:hover.disabled, .clrBr4 .iconBtn:hover.disabled, .clrBr4 .iconBtnSm:hover.disabled, .clrBr4 .btnHg:hover.disabled, .clrBr4 .btn:hover:disabled, .clrBr4 .btnRadio:hover:disabled, .clrBr4 .btnTxt:hover:disabled, .clrBr4 .iconBtn:hover:disabled, .clrBr4 .iconBtnSm:hover:disabled, .clrBr4 .btnHg:hover:disabled, .disabled
+    .clrBr4 .btn:focus, .disabled
+    .clrBr4 .btnRadio:focus, .disabled
+    .clrBr4 .btnTxt:focus, .disabled
+    .clrBr4 .iconBtn:focus, .disabled
+    .clrBr4 .iconBtnSm:focus, .disabled
+    .clrBr4 .btnHg:focus,
+    .clrBr4 .btn:focus.disabled,
+    .clrBr4 .btnRadio:focus.disabled,
+    .clrBr4 .btnTxt:focus.disabled,
+    .clrBr4 .iconBtn:focus.disabled,
+    .clrBr4 .iconBtnSm:focus.disabled,
+    .clrBr4 .btnHg:focus.disabled,
+    .clrBr4 .btn:focus:disabled,
+    .clrBr4 .btnRadio:focus:disabled,
+    .clrBr4 .btnTxt:focus:disabled,
+    .clrBr4 .iconBtn:focus:disabled,
+    .clrBr4 .iconBtnSm:focus:disabled,
+    .clrBr4 .btnHg:focus:disabled, .disabled .clrBr4.btn:hover, .disabled .clrBr4.btnRadio:hover, .disabled .clrBr4.btnTxt:hover, .disabled .clrBr4.iconBtn:hover, .disabled .clrBr4.iconBtnSm:hover, .disabled .clrBr4.btnHg:hover, .clrBr4.btn:hover.disabled, .clrBr4.btnRadio:hover.disabled, .clrBr4.btnTxt:hover.disabled, .clrBr4.iconBtn:hover.disabled, .clrBr4.iconBtnSm:hover.disabled, .clrBr4.btnHg:hover.disabled, .clrBr4.btn:hover:disabled, .clrBr4.btnRadio:hover:disabled, .clrBr4.btnTxt:hover:disabled, .clrBr4.iconBtn:hover:disabled, .clrBr4.iconBtnSm:hover:disabled, .clrBr4.btnHg:hover:disabled, .disabled .clrBr4.btn:focus, .disabled .clrBr4.btnRadio:focus, .disabled .clrBr4.btnTxt:focus, .disabled .clrBr4.iconBtn:focus, .disabled .clrBr4.iconBtnSm:focus, .disabled .clrBr4.btnHg:focus, .clrBr4.btn:focus.disabled, .clrBr4.btnRadio:focus.disabled, .clrBr4.btnTxt:focus.disabled, .clrBr4.iconBtn:focus.disabled, .clrBr4.iconBtnSm:focus.disabled, .clrBr4.btnHg:focus.disabled, .clrBr4.btn:focus:disabled, .clrBr4.btnRadio:focus:disabled, .clrBr4.btnTxt:focus:disabled, .clrBr4.iconBtn:focus:disabled, .clrBr4.iconBtnSm:focus:disabled, .clrBr4.btnHg:focus:disabled, .disabled
+    .clrBr4 .clrHover:hover,
+    .clrBr4 .clrHover:hover.disabled,
+    .clrBr4 .clrHover:hover:disabled, .disabled
+    .clrBr4 .clrHover:focus,
+    .clrBr4 .clrHover:focus.disabled,
+    .clrBr4 .clrHover:focus:disabled, .disabled .clrBr4.clrHover:hover, .clrBr4.clrHover:hover.disabled, .clrBr4.clrHover:hover:disabled, .disabled .clrBr4.clrHover:focus, .clrBr4.clrHover:focus.disabled, .clrBr4.clrHover:focus:disabled {
+      border-color: #d8d8d8; }
+
+.clrBrDec1 {
+  border-color: white;
+  border-width: 2px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4); }
+
+.clrBrEmph1 {
+  border-color: #2bae23; }
+  .clrBrEmph1 hr {
+    border-color: #2bae23; }
+
+.clrBrEmph2 {
+  border-color: #61dd5a; }
+  .clrBrEmph2 hr {
+    border-color: #61dd5a; }
+
+.clrBrError {
+  border-color: red; }
+  .clrBrError hr {
+    border-color: red; }
+
+.clrBAtt1 {
+  background-color: #2bae23; }
+
+.clrBAtt2 {
+  background-color: #61dd5a; }
+
+.clrBAttGrad {
+  background: linear-gradient(180deg, #61dd5a, #2bae23); }
+
+::-webkit-scrollbar {
+  width: 10px; }
+
+::-webkit-scrollbar-track {
+  background: whitesmoke; }
+
+::-webkit-scrollbar-thumb {
+  background: #bcbcbc; }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #cbcbcb; }
+  ::-webkit-scrollbar-thumb:active {
+    background: #cbcbcb; }
+
+.select2-container .select2-dropdown,
+.select2-container .select2-selection {
+  border-color: #dbdbdb; }
+
+.select2-container.select2-container--focus, .select2-container.select2-container--open {
+  border-color: #7f7f7f; }
+  .select2-container.select2-container--focus .select2-dropdown,
+  .select2-container.select2-container--focus .select2-selection, .select2-container.select2-container--open .select2-dropdown,
+  .select2-container.select2-container--open .select2-selection {
+    border-color: #7f7f7f; }
+
+.clrBrBk {
+  background-color: #dbdbdb; }
+
+.clrTx1Br {
+  border-color: #262626; }
+
+.clrE1 {
+  background-color: #2bae23; }
+
+.clrO {
+  background-color: rgba(245, 245, 245, 0.96); }
+
+.clrSh1 {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
+
+.clrSh2 {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05); }
+
+.clrSh3 {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); }
+
+.required::after {
+  color: #61dd5a; }
+
+.select2-container--focus .select2-selection__rendered {
+  border-color: #7f7f7f; }
+
+.select2Tags + .select2-container.select2-container--default .select2-selection--multiple {
+  border: none;
+  background: none; }
+  .select2Tags + .select2-container.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    border: 1px solid #dbdbdb;
+    background: white; }
+
+.select2Tags + .select2-container.select2-container--default.select2-container--focus .select2-selection--multiple .select2-selection__rendered {
+  border-color: #7f7f7f; }
+
+.select2Tags + .select2-container .select2-selection__choice {
+  background-color: white;
+  border-color: #dbdbdb;
+  color: #262626; }
+
+.select2Tags + .select2-container .select2-selection__choice__remove {
+  color: #262626; }
+
+.tagsDropdown .select2-container--open .select2-dropdown {
+  border-color: #7f7f7f; }
+
+.toolTip:before {
+  background-color: white;
+  border-color: #dbdbdb;
+  color: #262626;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
+
+.toolTip:after {
+  background-color: white;
+  border-color: #dbdbdb; }
+
+.chatOpen #appFrame #chatContainer {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: #d8d8d8; }
+
+.chatHead.active .headContent {
+  border-color: #7f7f7f; }
+
+/*# sourceMappingURL=main.css.map */
